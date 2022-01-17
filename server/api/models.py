@@ -16,6 +16,9 @@ class Switch(models.Model):
 
     mount = models.CharField(max_length=50)
 
+    image = models.FileField(upload_to='', null=True)
+    image_source = models.CharField(max_length=50, null=True)
+
     class Meta:
         verbose_name_plural = "Switches"
 

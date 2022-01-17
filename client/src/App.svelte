@@ -25,7 +25,7 @@
 
 
     onMount(async () => {
-        await getSwitch();
+        await getSwitches();
     })
 
 </script>

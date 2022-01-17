@@ -14,16 +14,30 @@ def switch(request, brand=None, model=None):
             if model:
                 switch_objects = switch_objects.filter(model__iexact=model)
 
-            switch_list = [model_to_dict(switch_object) for switch_object in switch_objects]
+            switch_list = []
+
+            for switch in switch_objects:
+                image_url = switch.image.url
+                json_switch = model_to_dict(switch, fields=[field.name for field in switch._meta.fields if field.name != "image"])
+                json_switch["image"] = image_url
+                switch_list.append(json_switch)
 
             return JsonResponse({"status": "success", "data": switch_list})
 
         else:
             switch_objects = Switch.objects.all()
 
+            switch_list = []
+
+            for switch in switch_objects:
+                image_url = switch.image.url
+                json_switch = model_to_dict(switch, fields=[field.name for field in switch._meta.fields if field.name != "image"])
+                json_switch["image"] = image_url
+                switch_list.append(json_switch)
+
             payload = {
                 "status": "success",
-                "data": [model_to_dict(switch_object) for switch_object in switch_objects]
+                "data": switch_list
             }
             return JsonResponse(payload)
     else:
