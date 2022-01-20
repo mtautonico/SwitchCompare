@@ -327,3 +327,7 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+# Other
+/server/media/
+/client/src/components/FancyInput.svelte
+/client/src/components/FancyButton.svelte

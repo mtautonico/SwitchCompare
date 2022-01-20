@@ -8,4 +8,3 @@
 - Backend
     - Django
     - MongoDB (Testing: SQLite)
-    - 

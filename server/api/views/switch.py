@@ -18,7 +18,8 @@ def switch(request, brand=None, model=None):
 
             for switch in switch_objects:
                 image_url = switch.image.url
-                json_switch = model_to_dict(switch, fields=[field.name for field in switch._meta.fields if field.name != "image"])
+                json_switch = model_to_dict(switch, fields=[field.name for field in switch._meta.fields if
+                                                            field.name != "image"])
                 json_switch["image"] = image_url
                 switch_list.append(json_switch)
 
@@ -31,7 +32,8 @@ def switch(request, brand=None, model=None):
 
             for switch in switch_objects:
                 image_url = switch.image.url
-                json_switch = model_to_dict(switch, fields=[field.name for field in switch._meta.fields if field.name != "image"])
+                json_switch = model_to_dict(switch, fields=[field.name for field in switch._meta.fields if
+                                                            field.name != "image"])
                 json_switch["image"] = image_url
                 switch_list.append(json_switch)
 

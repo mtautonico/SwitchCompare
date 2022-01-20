@@ -1,6 +1,12 @@
 from django.db import models
 
 
+def logo_dir_path(instance, filename):
+    extension = filename.split('.')[-1]
+    new_filename = f"{instance.brand}-{instance.model}.{extension}"
+    return new_filename
+
+
 # Create your models here.
 class Switch(models.Model):
     brand = models.CharField(max_length=50)
@@ -16,8 +22,9 @@ class Switch(models.Model):
 
     mount = models.CharField(max_length=50)
 
-    image = models.FileField(upload_to='', null=True)
+    image = models.FileField(upload_to=logo_dir_path, null=True)
     image_source = models.CharField(max_length=50, null=True)
+    image_source_url = models.CharField(max_length=250, null=True)
 
     class Meta:
         verbose_name_plural = "Switches"
