@@ -21,7 +21,9 @@
 
     let sortBy = {col: "id", ascending: true};
 
-    $: sort_switches = (column) => {
+
+
+    $: sort_item = (column, target) => {
         if (sortBy.col === column) {
             sortBy.ascending = !sortBy.ascending
         } else {
@@ -39,7 +41,7 @@
                     ? 1 * sortModifier
                     : 0;
 
-        switches = switches.sort(sort);
+        return target.sort(sort);
     }
 
     onMount(async () => {
@@ -62,9 +64,9 @@
             .catch((error) => {
                 console.error(`Something went wrong while getting brand: ${error}`);
             });
+        // Calls the sort_switches function to sort the switches by brand once the component is mounted;
+        brands = sort_item("name", brands);
         console.log("Brands", brands);
-        // Calls the sort_switches function to sort the switches by brand once the component is mounted.
-        sort_switches("brand");
     });
 </script>
 <svelte:head>
@@ -73,8 +75,8 @@
 <main>
     {#each brands as brand}
         <div class="homepageOption" on:click={() => select_switch(brand)}>
-            <span>{brand.name}</span>
-            <img src={brand.logo} alt="">
+            <img class="homepageImage" src={brand.logo} alt="">
+            <span class="centered">{brand.name}</span>
         </div>
     {/each}
     <div>
@@ -83,31 +85,28 @@
 </main>
 
 <style>
-    table, th, td {
-        border: 1px solid black;
-    }
-
-    main {
-        text-align: center;
-        padding: 1em;
-        max-width: 240px;
-        margin: 0 auto;
-    }
-
-    h1 {
-        color: #ff3e00;
-        text-transform: uppercase;
-        font-size: 4em;
-        font-weight: 100;
-    }
-
     .homepageOption {
         float: left;
         padding: 1em;
         margin: 1em;
         border-radius: 5px;
-        font-size: 12pt;
         transition: all 0.3s ease-in-out;
+        position: relative;
+    }
+
+    .homepageImage {
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        width: 128px;
+    }
+
+    .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: black;
+        font-size: 24pt;
     }
 
     .homepageOption:hover {
@@ -118,11 +117,5 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-    }
-
-    @media (min-width: 640px) {
-        main {
-            max-width: none;
-        }
     }
 </style>
