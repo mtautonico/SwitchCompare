@@ -2,28 +2,26 @@
     import {onMount} from "svelte";
 
     let switches = [];
+    let brands = [];
+    let selected_switches = [];
 
-    function first_capital(string) {
+    // Capitalizes the first letter of a string
+    let first_capital = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    async function getSwitches() {
-        await fetch("http://localhost:8000/api/switch")
-            .then(response => response.json())
-            .then(data => {
-                switches = data.data;
-                console.log(switches);
-            })
-            .catch((error) => {
-                console.error(`Something went wrong while getting switch: ${error}`);
-            });
-        return switches;
+
+    $: select_switch = (switch_brand) => {
+        for (let i = 0; i < switches.length; i++) {
+            if (switches[i].brand === switch_brand) {
+                selected_switches.push(switches[i]);
+            }
+        }
     }
 
     let sortBy = {col: "id", ascending: true};
 
     $: sort_switches = (column) => {
-
         if (sortBy.col === column) {
             sortBy.ascending = !sortBy.ascending
         } else {
@@ -45,48 +43,43 @@
     }
 
     onMount(async () => {
-        await getSwitches();
-        sort_switches("brand")
+        // Get all switches from the API
+        await fetch("/api/switch")
+            .then(response => response.json())
+            .then(data => {
+                switches = data.data;
+            })
+            .catch((error) => {
+                console.error(`Something went wrong while getting switch: ${error}`);
+            });
+        console.log("Switches", switches);
+        // Get all brands from the API
+        await fetch("/api/brand")
+            .then(response => response.json())
+            .then(data => {
+                brands = data.data;
+            })
+            .catch((error) => {
+                console.error(`Something went wrong while getting brand: ${error}`);
+            });
+        console.log("Brands", brands);
+        // Calls the sort_switches function to sort the switches by brand once the component is mounted.
+        sort_switches("brand");
     });
 </script>
 <svelte:head>
     <title>Switch Compare</title>
 </svelte:head>
 <main>
-    <table>
-        <thead>
-        <tr id="headers">
-            <th on:click={sort_switches("brand")}>Brand</th>
-            <th on:click={sort_switches("model")}>Model</th>
-            <th on:click={sort_switches("type")}>Type</th>
-            <th on:click={sort_switches("mount")}>Mount</th>
-            <th on:click={sort_switches("operating_force")}>Operating Force</th>
-            <th on:click={sort_switches("bottom_force")}>Bottom Force</th>
-            <th on:click={sort_switches("actuation_distance")}>Actuation Distance</th>
-            <th on:click={sort_switches("bottom_distance")}>Bottom Distance</th>
-            <th>Image Source</th>
-        </tr>
-        </thead>
-        <tbody id="switch_table">
-        {#each switches as swtch}
-            <tr>
-                <td>{swtch.brand}</td>
-                <td>{swtch.model}</td>
-                <td>{first_capital(swtch.type)}</td>
-                {#if swtch.mount === "pcb"}
-                    <td>{swtch.mount.toUpperCase()}</td>
-                {:else}
-                    <td>{first_capital(swtch.mount)}</td>
-                {/if}
-                <td>{swtch.operating_force}g</td>
-                <td>{swtch.bottom_force}g</td>
-                <td>{swtch.actuation_distance}mm</td>
-                <td>{swtch.bottom_distance}mm</td>
-                <td><a href="{swtch.image_source_url}" target="_blank">{swtch.image_source}</a></td>
-            </tr>
-        {/each}
-        </tbody>
-    </table>
+    {#each brands as brand}
+        <div class="homepageOption" on:click={() => select_switch(brand)}>
+            <span>{brand.name}</span>
+            <img src={brand.logo} alt="">
+        </div>
+    {/each}
+    <div>
+
+    </div>
 </main>
 
 <style>
@@ -108,17 +101,28 @@
         font-weight: 100;
     }
 
-    @media (min-width: 640px) {
-        main {
-            max-width: none;
-        }
+    .homepageOption {
+        float: left;
+        padding: 1em;
+        margin: 1em;
+        border-radius: 5px;
+        font-size: 12pt;
+        transition: all 0.3s ease-in-out;
     }
 
-    #headers:hover {
+    .homepageOption:hover {
+        background-color: #ff3e00;
+        color: white;
         cursor: pointer;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+    }
+
+    @media (min-width: 640px) {
+        main {
+            max-width: none;
+        }
     }
 </style>
