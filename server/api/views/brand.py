@@ -14,7 +14,7 @@ def brand(request, name=None):
         brand_list = []
         for item in brand_objects:
 
-            json_brand = model_to_dict(item, fields=['name', 'website'])
+            json_brand = model_to_dict(item, fields=['id', 'name', 'website'])
             json_brand['logo'] = item.logo.url
             brand_list.append(json_brand)
         payload = {
