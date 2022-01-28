@@ -24,6 +24,7 @@ def switch(request, brand=None, model=None):
                                                             field.name not in ["image", "brand_image"]])
             json_switch["image"] = image_url
             json_switch["brand_image"] = brand_image_url
+            json_switch["brand"] = switch_obj.brand.name
             switch_list.append(json_switch)
 
         payload = {
