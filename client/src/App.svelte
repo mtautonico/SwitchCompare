@@ -11,5 +11,5 @@
 </script>
 
 <main>
-    <Router {routes}/>
+    <Router routes={routes} config={config} />
 </main>

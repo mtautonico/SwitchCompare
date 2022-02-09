@@ -75,8 +75,11 @@ export default {
 			dirs: ["public"],
 			spa: true,
 			proxy: [
-				{"from": "/api", "to": "http://localhost:8000/api"},
-				{"from": "/media", "to": "http://localhost:8000/media"},
+				{"from": "/api", "to": "http://192.168.1.109:8000/api"},
+				{"from": "/media", "to": "http://192.168.1.109:8000/media"},
+				// {"from": "/api", "to": "http://localhost:8000/api"},
+				// {"from": "/media", "to": "http://localhost:8000/media"},
+
 			]
 		}),
 
