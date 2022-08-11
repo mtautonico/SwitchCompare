@@ -1,11 +1,11 @@
 
 /**
  * @roxi/routify 2.18.4
- * File generated Wed Feb 09 2022 18:21:58 GMT-0500 (Eastern Standard Time)
+ * File generated Sun Aug 07 2022 18:22:30 GMT-0400 (Eastern Daylight Time)
  */
 
 export const __version = "2.18.4"
-export const __timestamp = "2022-02-09T23:21:58.738Z"
+export const __timestamp = "2022-08-07T22:22:30.444Z"
 
 //buildRoutes
 import { buildClientTree } from "@roxi/routify/runtime/buildRoutes"
@@ -24,7 +24,7 @@ export const _tree = {
   "filepath": "/_layout.svelte",
   "root": true,
   "ownMeta": {},
-  "absolutePath": "C:/Users/mario/Folders/CodingProjectFiles/SwitchCompare/client/src/pages/_layout.svelte",
+  "absolutePath": "E:/CodingProjectFiles/SwitchCompare/client_svelte/src/pages/_layout.svelte",
   "children": [
     {
       "isFile": true,
@@ -34,7 +34,7 @@ export const _tree = {
       "name": "_fallback",
       "ext": "svelte",
       "badExt": false,
-      "absolutePath": "C:/Users/mario/Folders/CodingProjectFiles/SwitchCompare/client/src/pages/_fallback.svelte",
+      "absolutePath": "E:/CodingProjectFiles/SwitchCompare/client_svelte/src/pages/_fallback.svelte",
       "importPath": "../src/pages/_fallback.svelte",
       "isLayout": false,
       "isReset": false,
@@ -59,7 +59,7 @@ export const _tree = {
       "name": "index",
       "ext": "svelte",
       "badExt": false,
-      "absolutePath": "C:/Users/mario/Folders/CodingProjectFiles/SwitchCompare/client/src/pages/index.svelte",
+      "absolutePath": "E:/CodingProjectFiles/SwitchCompare/client_svelte/src/pages/index.svelte",
       "importPath": "../src/pages/index.svelte",
       "isLayout": false,
       "isReset": false,
