@@ -249,7 +249,6 @@ cover/
 
 # Django stuff:
 local_settings.py
-db.sqlite3
 db.sqlite3-journal
 
 # Flask stuff:
@@ -328,6 +327,3 @@ dmypy.json
 cython_debug/
 
 # Other
-/server/media/
-/client/src/components/FancyInput.svelte
-/client/src/components/FancyButton.svelte
