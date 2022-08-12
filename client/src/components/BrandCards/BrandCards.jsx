@@ -1,20 +1,26 @@
 import './BrandCards.css';
+import {useEffect, useState} from "react";
 
-let brands = [];
-
-
-fetch("/api/brand")
-    .then(response => response.json())
-    .then(data => {
-        brands = data.data;
-    })
-    .catch((error) => {
-        console.error(`Something went wrong while getting brand: ${error}`);
-    });
-console.log(brands)
 function BrandCards() {
+    const [brands, setBrands] = useState([]);
+    const getBrands = async () => {
+        try {
+            const response = await
+                fetch("http://127.0.0.1:8000/api/brand");
+            const json = await response.json();
+            setBrands(json.data);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+    useEffect (() => {
+        getBrands();
+    }, []);
+    console.log(data);
     return (
-        <span></span>
+        <div>
+            <span></span>
+        </div>
     )
 }
 

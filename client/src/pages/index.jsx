@@ -3,9 +3,7 @@ import BrandCards from "../components/BrandCards/BrandCards";
 
 function Index() {
     return (
-        <div>
-            <BrandCards/>
-        </div>
+        <BrandCards/>
     )
 }
 
