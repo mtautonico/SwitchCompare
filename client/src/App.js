@@ -1,9 +1,24 @@
-import Index from './pages/index.jsx'
+import {BrowserRouter as Router, useRoutes, useNavigate} from "react-router-dom";
+import React from 'react';
+import Index from "./pages";
+import Brands from "./pages/brand/brands";
 
 function App() {
-  return (
-      <Index/>
-      );
+    // I need this here to redirect
+    const navigate = useNavigate();
+    // List of possible routes, paths containing a ":" can be used to pass parameters to the route
+    return useRoutes([
+      {path: "/", element: <Index/>},
+      {path: "/brand/:brand", element: <Brands/>}
+  ]);
 }
 
-export default App;
+function AppWrapper () {
+    return (
+        <Router>
+            <App/>
+        </Router>
+    );
+}
+
+export default AppWrapper;
