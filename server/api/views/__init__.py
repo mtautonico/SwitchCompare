@@ -1,1 +1,1 @@
-from . import switch, brand
+from . import switch, brand, isauth, login, register, logout

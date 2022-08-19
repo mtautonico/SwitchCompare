@@ -1,5 +1,4 @@
 import {useParams} from "react-router-dom";
-import {server_url} from "../index";
 import "./brands.css";
 
 

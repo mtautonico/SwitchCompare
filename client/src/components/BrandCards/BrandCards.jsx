@@ -1,6 +1,5 @@
 import './BrandCards.css';
 import {useEffect, useState} from "react";
-import {server_url} from "../../pages/index";
 import {useNavigate} from "react-router-dom";
 
 function BrandCards() {
@@ -11,7 +10,7 @@ function BrandCards() {
     const getBrands = async () => {
         try {
             const response = await
-                fetch(`${server_url}/api/brand`);
+                fetch(`/api/brand`);
             const json = await response.json();
             setBrands(json.data);
         } catch (e) {
@@ -31,7 +30,7 @@ function BrandCards() {
                      onClick={() => {
                          naviate(`/brand/${brand.name.toLowerCase()}`)
                      }}>
-                    <img className="cardLogo" src={server_url + brand.logo} alt={brand.name + " logo"}/>
+                    <img className="cardLogo" src={brand.logo} alt={brand.name + " logo"}/>
                     <span className="cardText">{brand.name}</span>
                 </div>))}
         </div>
