@@ -327,3 +327,5 @@ dmypy.json
 cython_debug/
 
 # Other
+
+.DS_Store
