@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, useRoutes, useNavigate} from "react-router-dom";
 import React from 'react';
-import Index from "./pages";
+import Index from "./pages/index/index";
 import Brands from "./pages/brand/brands";
 
 function App() {

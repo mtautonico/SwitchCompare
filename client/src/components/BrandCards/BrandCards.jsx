@@ -21,7 +21,6 @@ function BrandCards() {
     useEffect(() => {
         getBrands();
     }, []);
-    // TODO: Be sure to remove this at some point
     return (
         <div>
             {/* Loops through every brand and creates a card for each with a map*/}
