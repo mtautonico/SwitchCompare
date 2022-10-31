@@ -2,7 +2,7 @@ import './BrandCards.css';
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-function BrandCards() {
+export default function BrandCards() {
     // I need this here to navigate to the next page
     const naviate = useNavigate();
     const [brands, setBrands] = useState([]);
@@ -35,5 +35,3 @@ function BrandCards() {
         </div>
     );
 }
-
-export default BrandCards;

@@ -13,7 +13,7 @@ function App() {
   ]);
 }
 
-function AppWrapper () {
+export default function AppWrapper () {
     return (
         <Router>
             <App/>
@@ -21,4 +21,3 @@ function AppWrapper () {
     );
 }
 
-export default AppWrapper;

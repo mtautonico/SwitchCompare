@@ -8,7 +8,7 @@ from ..models import Switch
 def switch(request, brand=None, model=None):
     if request.method == "GET":
         if brand:
-            switch_objects = Switch.objects.filter(brand__iexact=brand)
+            switch_objects = Switch.objects.filter(brand__name__iexact=brand)
             if model:
                 switch_objects = switch_objects.filter(model__iexact=model)
         else:

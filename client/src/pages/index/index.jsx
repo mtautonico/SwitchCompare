@@ -2,7 +2,7 @@ import BrandCards from "../../components/BrandCards/BrandCards";
 import Navbar from "../../components/navbar/navbar";
 import "./index.css"
 
-function Index() {
+export default function Index() {
     return (
         <div>
             <Navbar/>
@@ -12,5 +12,3 @@ function Index() {
         </div>
     );
 }
-
-export default Index;
