@@ -1,4 +1,4 @@
-// TODO: This lol
+// TODO: Make this not look like shit
 import "./navbar.css";
 
 export default function Navbar() {
