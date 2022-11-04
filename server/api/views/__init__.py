@@ -1,1 +1,1 @@
-from . import switch, brand, logo
+from . import switch, brand

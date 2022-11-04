@@ -1,0 +1,49 @@
+.switchTable {
+    table-layout: auto;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1em;
+}
+
+/*Table header text*/
+.switchTableHeader th {
+    background-color: #f2f2f2 !important;
+    border-spacing: 0;
+    color: #000;
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+}
+
+/*Fixes the "Type" field not being capitalized*/
+.switchType {
+    text-transform: capitalize;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.switchTableData {
+    text-align: center;
+    font-size: 20px;
+    background-color: #f2f2f2 !important;
+}
+
+.switchTableData:hover {
+    background-color: #e6e6e6 !important;
+    cursor: pointer;
+}
+
+.borderTopLeft {
+    border-radius: 25px 0 0 0;
+}
+
+.borderTopRight {
+    border-radius: 0 25px 0 0;
+}
+
+.headerItem:hover {
+    background-color: #e6e6e6 !important;
+    cursor: pointer;
+    user-select: none;
+}

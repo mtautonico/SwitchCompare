@@ -1,5 +1,5 @@
 import './BrandCards.css';
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {QueryClient, QueryClientProvider, useQuery} from '@tanstack/react-query'
 
@@ -27,7 +27,7 @@ function Module() {
     // Fetches the brands and adds them to the hooked list
     const response = useQuery(['response'], async () => {
         setBrands(((await (await fetch(`/api/brand`)).json()).data));
-        // Something has to be returned don't ask why kuz idk either=
+        // Something has to be returned don't ask why kuz idk either
         return "no";
     });
     return (
