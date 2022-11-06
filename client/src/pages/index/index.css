@@ -4,3 +4,7 @@
     justify-content: center;
     display: flex;
 }
+
+.content {
+    min-height: calc(100vh - 60px);
+}

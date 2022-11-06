@@ -2,18 +2,20 @@ import {BrowserRouter as Router, useRoutes, useNavigate} from "react-router-dom"
 import React from 'react';
 import Index from "./pages/index/index";
 import Brands from "./pages/brand/brands";
+import Navbar from "./components/navbar";
+import Footer from "./components/footer";
 
 function App() {
     // I need this here to redirect
     const navigate = useNavigate();
     // List of possible routes, paths containing a ":" can be used to pass parameters to the route
     return useRoutes([
-      {path: "/", element: <Index/>},
-      {path: "/brand/:brand", element: <Brands/>}
-  ]);
+        {path: "/", element: <Index/>},
+        {path: "/brand/:brand", element: <Brands/>}
+    ]);
 }
 
-export default function AppWrapper () {
+export default function AppWrapper() {
     return (
         <Router>
             <App/>

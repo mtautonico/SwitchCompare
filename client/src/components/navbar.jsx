@@ -1,7 +1,7 @@
 // TODO: Make this not look like shit
-import "./navbar.css";
+import "./components-styles/navbar.css";
 import {useNavigate} from "react-router-dom";
-import logo from "../../images/navbar-logo.png";
+import logo from "../images/navbar-logo.png";
 
 export default function Navbar() {
     const navigate = useNavigate();

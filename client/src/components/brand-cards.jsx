@@ -1,4 +1,4 @@
-import './BrandCards.css';
+import './components-styles/brand-cards.css';
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {QueryClient, QueryClientProvider, useQuery} from '@tanstack/react-query'

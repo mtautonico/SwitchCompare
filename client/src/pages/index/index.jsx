@@ -1,14 +1,19 @@
-import BrandCards from "../../components/BrandCards/BrandCards";
-import Navbar from "../../components/navbar/navbar";
+import BrandCards from "../../components/brand-cards";
 import "./index.css"
+import Navbar from "../../components/navbar";
+import React from "react";
+import Footer from "../../components/footer";
 
 export default function Index() {
     return (
         <div>
-            <Navbar/>
-            <div className="center">
-                <BrandCards/>
+            <div className="content">
+                <Navbar/>
+                <div className="center">
+                    <BrandCards/>
+                </div>
             </div>
+            <Footer/>
         </div>
     );
 }

@@ -1,7 +1,7 @@
 import {useParams} from "react-router-dom";
 import {useState} from "react";
 import "./brands.css";
-import Navbar from "../../components/navbar/navbar";
+
 import {QueryClient, QueryClientProvider, useQuery} from '@tanstack/react-query'
 import modCheck from "../../images/modCheck.gif";
 // We have to use react-query because useEffect is fucking shit
@@ -43,7 +43,6 @@ function Module() {
     if (isSwitchesEmpty === true) {
         return (
             <div>
-                <Navbar/>
                 <div style={{display: "flex", justifyContent: "center"}}>
                     <img style={{borderRadius: "10px", width: "10em", height: "auto"}} src={modCheck}
                          alt="modCheck"/>
@@ -57,7 +56,6 @@ function Module() {
         return (
             // TODO: Add icon signifying selected brand
             <div>
-                <Navbar/>
                 <table cellSpacing="0" className="switchTable">
                     <tbody>
                     <tr className="switchTableHeader">
@@ -86,11 +84,7 @@ function Module() {
         )
         //  Output nothing when the data is still loading/determining if there should be data or modCheck
     } else {
-        return (
-            <div>
-                <Navbar/>
-            </div>
-        )
+        return (<div/>)
     }
 }
 
