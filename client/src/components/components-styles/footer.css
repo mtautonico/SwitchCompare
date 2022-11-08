@@ -8,16 +8,24 @@
 }
 
 .footerLink {
-    color: inherit;
-    text-decoration: inherit; /* no underline */
+    color: black;
+    text-decoration: none; /* no underline */
 }
 
 .github {
     float: right;
     padding-right: 1em;
 }
+
 .reddit {
     float: right;
     padding-left: 1em;
     padding-right: 0.5em;
+}
+
+.copyright {
+    float: left;
+    padding-left: 1em;
+    color: black;
+    text-decoration: none; /* no underline */
 }

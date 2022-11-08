@@ -12,6 +12,7 @@ const queryClient = new QueryClient({
     }
 })
 
+// React-query provider to make api calls without useEffect
 export default function BrandCards() {
     return (
         <QueryClientProvider client={queryClient}>

@@ -1,13 +1,9 @@
-import {BrowserRouter as Router, useRoutes, useNavigate} from "react-router-dom";
+import {BrowserRouter as Router, useRoutes} from "react-router-dom";
 import React from 'react';
 import Index from "./pages/index/index";
 import Brands from "./pages/brand/brands";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
 
 function App() {
-    // I need this here to redirect
-    const navigate = useNavigate();
     // List of possible routes, paths containing a ":" can be used to pass parameters to the route
     return useRoutes([
         {path: "/", element: <Index/>},
@@ -15,6 +11,7 @@ function App() {
     ]);
 }
 
+// TODO: Hopefully figure out a way to make the navbar and footer not reload on every page change
 export default function AppWrapper() {
     return (
         <Router>

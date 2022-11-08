@@ -1,4 +1,4 @@
-.navbar__logo {
+.navbar_logo {
     justify-content: center;
     display: flex;
     background-color: rgb(230, 230, 230);
@@ -6,7 +6,7 @@
     user-select: none;
 }
 
-.navbar__logo img {
+.navbar_logo img {
     width: 5em;
     height: auto;
     user-select: none;
