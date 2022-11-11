@@ -23,7 +23,7 @@ export default function BrandCards() {
 
 function Module() {
     // I need this here to navigate to the next page
-    const naviate = useNavigate();
+    const navigate = useNavigate();
     const [brands, setBrands] = useState([]);
     // Fetches the brands and adds them to the hooked list
     const response = useQuery(['response'], async () => {
@@ -31,13 +31,14 @@ function Module() {
         // Something has to be returned don't ask why kuz idk either
         return "no";
     });
+
     return (
         <div>
             {/* Loops through every brand and creates a card for each with a map*/}
             {brands.map(brand => (
                 <div key={brand.id} className="card"
                      onClick={() => {
-                         naviate(`/brand/${brand.name.toLowerCase()}`)
+                         navigate(`/brand/${brand.name.toLowerCase()}`)
                      }}>
                     <img className="cardLogo" src={brand.logo} alt={brand.name + " logo"}/>
                     <span className="cardText">{brand.name}</span>

@@ -2,6 +2,7 @@ import {useParams} from "react-router-dom";
 import {useState} from "react";
 import "./brands.css";
 import {QueryClient, QueryClientProvider, useQuery} from '@tanstack/react-query'
+import {DataGrid, GridColDef, GridValueGetterParams} from '@mui/x-data-grid';
 import FourOhFour from "../404/404";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
@@ -42,7 +43,17 @@ function Module() {
         // Something has to be returned don't ask why kuz idk either
         return "no";
     });
-    console.log(switches)
+
+    const columns: GridColDef[] = [
+        {field: 'id', headerName: 'ID', width: 70},
+        {field: 'brand', headerName: 'Brand', width: 130},
+        {field: 'model', headerName: 'Model', width: 130},
+        {field: 'type', headerName: 'Type', width: 130},
+        {field: 'actuation_distance', headerName: 'Actuation Distance', width: 130},
+        {field: 'bottom_distance', headerName: 'Bottom Distance', width: 130},
+        {field: 'operating_force', headerName: 'Operating Force', width: 130},
+        {field: 'bottom_force', headerName: 'Bottom Force', width: 130},
+    ]
     // If the switches are empty then it will return modCheck
     if (isSwitchesEmpty === true) {
         return (
@@ -55,33 +66,13 @@ function Module() {
             <div>
                 <div className="content">
                     <Navbar/>
-                    <table cellSpacing="0" className="switchTable">
-                        <tbody>
-                        <tr className="switchTableHeader">
-                            <th className="headerItem borderTopLeft">Brand</th>
-                            <th className="headerItem">Model</th>
-                            <th className="headerItem switchType">Type</th>
-                            <th className="headerItem">Actuation Distance</th>
-                            <th className="headerItem">Bottom Distance</th>
-                            <th className="headerItem">Operating Force</th>
-                            <th className="headerItem borderTopRight">Bottom Force</th>
-                        </tr>
-                        {/*Create table data using .map to make a data entry for each item from the API request*/}
-                        {switches.map(Switch => (
-                            // TODO: Create a table with the fetched switches
-                            <tr key={Switch.id} className="switchTableData">
-                                <td>{Switch.brand}</td>
-                                <td>{Switch.model}</td>
-                                {/*The class fixes the "Type" field not being capitalized*/}
-                                <td className="switchType">{Switch.type}</td>
-                                {/* "Math.trunc" is needed to fix the decimal place*/}
-                                <td>{Math.trunc(Switch.actuation_distance)}mm</td>
-                                <td>{Math.trunc(Switch.bottom_distance)}mm</td>
-                                <td>{Switch.operating_force}g</td>
-                                <td>{Switch.bottom_force}g</td>
-                            </tr>))}
-                        </tbody>
-                    </table>
+                    <div style={{height: 400, width: '100%'}}>
+                        <DataGrid
+                            columns={columns}
+                            rows={switches}
+                            pageSize={5}
+                            rowsPerPageOptions={[5]}/>
+                    </div>
                 </div>
                 <Footer/>
             </div>

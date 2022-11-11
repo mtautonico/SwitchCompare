@@ -32,8 +32,8 @@ class Switch(models.Model):
     actuation_distance = models.DecimalField(max_digits=5, decimal_places=2)
     bottom_distance = models.DecimalField(max_digits=5, decimal_places=2)
 
-    operating_force = models.IntegerField()
-    bottom_force = models.IntegerField()
+    operating_force = models.DecimalField(max_digits=5, decimal_places=2)
+    bottom_force = models.DecimalField(max_digits=5, decimal_places=2)
 
     mount = models.CharField(max_length=50)
 
