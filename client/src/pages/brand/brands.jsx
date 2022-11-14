@@ -3,6 +3,9 @@ import {useState} from "react";
 import "./brands.css";
 import {QueryClient, QueryClientProvider, useQuery} from '@tanstack/react-query'
 import {DataGrid, GridColDef, GridValueGetterParams} from '@mui/x-data-grid';
+import {
+    Table, TableCell, TableContainer, TableHead, TableRow, TableBody, Paper, ThemeProvider, createTheme
+} from "@mui/material";
 import FourOhFour from "../404/404";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
@@ -15,6 +18,44 @@ const queryClient = new QueryClient({
         }
     }
 })
+
+// Function to create usable data for the mui table
+function createData(id, brand, model, type, actuation_distance, bottom_distance, operating_force, bottom_force) {
+    return {id, brand, model, type, actuation_distance, bottom_distance, operating_force, bottom_force};
+}
+
+// Functions to determine the order of sorting for the table
+function getComparator(order, orderBy) {
+    return order === 'desc'
+        ? (a, b) => descendingComparator(a, b, orderBy)
+        : (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+function descendingComparator(a, b, orderBy) {
+    if (b[orderBy] < a[orderBy]) {
+        return -1;
+    }
+    if (b[orderBy] > a[orderBy]) {
+        return 1;
+    }
+    return 0;
+}
+
+function stableSort(array, comparator) {
+    const stabilizedThis = array.map((el, index) => [el, index]);
+    stabilizedThis.sort((a, b) => {
+        const order = comparator(a[0], b[0]);
+        if (order !== 0) {
+            return order;
+        }
+        return a[1] - b[1];
+    });
+    return stabilizedThis.map((el) => el[0]);
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 // React-query provider to make api calls without useEffect
 export default function Brands() {
@@ -44,16 +85,11 @@ function Module() {
         return "no";
     });
 
-    const columns: GridColDef[] = [
-        {field: 'id', headerName: 'ID', width: 70},
-        {field: 'brand', headerName: 'Brand', width: 130},
-        {field: 'model', headerName: 'Model', width: 130},
-        {field: 'type', headerName: 'Type', width: 130},
-        {field: 'actuation_distance', headerName: 'Actuation Distance', width: 130},
-        {field: 'bottom_distance', headerName: 'Bottom Distance', width: 130},
-        {field: 'operating_force', headerName: 'Operating Force', width: 130},
-        {field: 'bottom_force', headerName: 'Bottom Force', width: 130},
-    ]
+    // Function to create the rows for the table for each switch
+    const rows = switches.map((item) => {
+        return createData(item.id, item.brand, item.model, item.type, item.actuation_distance, item.bottom_distance, item.operating_force, item.bottom_force);
+    })
+
     // If the switches are empty then it will return modCheck
     if (isSwitchesEmpty === true) {
         return (
@@ -66,12 +102,38 @@ function Module() {
             <div>
                 <div className="content">
                     <Navbar/>
-                    <div style={{height: 400, width: '100%'}}>
-                        <DataGrid
-                            columns={columns}
-                            rows={switches}
-                            pageSize={5}
-                            rowsPerPageOptions={[5]}/>
+                    <div className="dataGrid">
+                        {/*TODO: Style it with dark theme and make the width smaller*/}
+                        <TableContainer component={Paper}>
+                            <Table aria-label="SwitchTable">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>ID</TableCell>
+                                        <TableCell align="center">Brand</TableCell>
+                                        <TableCell align="center">Model</TableCell>
+                                        <TableCell align="center">Type</TableCell>
+                                        <TableCell align="center">Actuation Distance</TableCell>
+                                        <TableCell align="center">Bottom Distance</TableCell>
+                                        <TableCell align="center">Operating Force</TableCell>
+                                        <TableCell align="center">Bottom Force</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {rows.map((row) => (
+                                        <TableRow key={row.number}>
+                                            <TableCell component="th" scope="row">{row.id}</TableCell>
+                                            <TableCell align="center">{row.brand}</TableCell>
+                                            <TableCell align="center">{row.model}</TableCell>
+                                            <TableCell align="center">{capitalizeFirstLetter(row.type)}</TableCell>
+                                            <TableCell align="center">{parseFloat(row.actuation_distance)}</TableCell>
+                                            <TableCell align="center">{parseFloat(row.bottom_distance)}</TableCell>
+                                            <TableCell align="center">{parseFloat(row.operating_force)}</TableCell>
+                                            <TableCell align="center">{parseFloat(row.bottom_force)}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
                     </div>
                 </div>
                 <Footer/>
@@ -82,4 +144,3 @@ function Module() {
         return (<div/>)
     }
 }
-
