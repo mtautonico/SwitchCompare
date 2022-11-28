@@ -1,0 +1,13 @@
+.navbar_logo {
+  justify-content: center;
+  display: flex;
+  background-color: rgb(230, 230, 230);
+  padding: 1em;
+  user-select: none;
+}
+
+.navbar_logo img {
+    width: 5em;
+    height: auto;
+    user-select: none;
+}
