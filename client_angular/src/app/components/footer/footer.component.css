@@ -1,11 +1,6 @@
 .footer-container {
-  height: 60px;
   background-color: rgb(230, 230, 230);
-}
-
-.footer-content {
-  margin: 0 auto;
-  text-align: center;
+  height: 60px;
 }
 
 .footerLink {

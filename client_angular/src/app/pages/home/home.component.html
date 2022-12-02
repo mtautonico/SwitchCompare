@@ -1,1 +1,8 @@
-<span>&#60;Insert body contents here></span>
+<div class="cards">
+  <div class="card" *ngFor="let brand of brands">
+    <a [routerLink]="['/brand', brand['name'].toLowerCase()]">
+      <img class='cardLogo' [src]="brand['logo']" [alt]="brand['name']"/>
+      <span class="cardText">{{brand['name']}}</span>
+    </a>
+  </div>
+</div>
