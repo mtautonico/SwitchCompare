@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GetswitchesService } from './getswitches.service';
+import { APIFetchService } from './apifetch.service';
 
-describe('GetswitchesService', () => {
-  let service: GetswitchesService;
+describe('APIFetchService', () => {
+  let service: APIFetchService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(GetswitchesService);
+    service = TestBed.inject(APIFetchService);
   });
 
   it('should be created', () => {

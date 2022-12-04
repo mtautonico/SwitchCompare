@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {GetbrandsService} from "../../services/getbrands/getbrands.service";
+import {APIFetchService} from "../../services/apifetch/apifetch.service";
 
 interface Brand {
   name: string;
@@ -13,15 +13,13 @@ interface Brand {
 })
 export class HomeComponent {
 
-  constructor(private getbrandsService: GetbrandsService) {
+  constructor(private APIFetchService: APIFetchService) {
   }
 
   brands: Brand[] = [];
 
   async ngOnInit() {
-    await (async () => {
-      this.brands = await this.getbrandsService.getBrands();
-      console.log(this.brands);
-    })();
+    this.brands = await this.APIFetchService.getBrands();
+    console.log(this.brands);
   }
 }
