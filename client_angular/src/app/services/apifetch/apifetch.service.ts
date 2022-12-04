@@ -14,7 +14,7 @@ export class APIFetchService {
     return json.data;
   }
   async getSwitches(brand: string) {
-    let response = await fetch(`/api/brand/${brand}`);
+    let response = await fetch(`/api/switch/${brand}`);
     let json = await response.json();
     return json.data;
   }
