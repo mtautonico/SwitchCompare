@@ -1,16 +1,31 @@
 <!--TODO: Make the table again-->
-<h1 class="titleBar" style="">{{brand}}</h1>
-<br/>
-<table class="switchTable">
-  <thead>
-  <tr>
-    <th style="border-top-left-radius: 25px;" class="tHeaderItem tItem">Brand</th>
-    <th class="tHeaderItem tItem">Model</th>
-    <th class="tHeaderItem tItem">Type</th>
-    <th class="tHeaderItem tItem">Actuation Distance</th>
-    <th class="tHeaderItem tItem">Bottom Distance</th>
-    <th class="tHeaderItem tItem">Operating Force</th>
-    <th style="border-top-right-radius: 25px;" class="tHeaderItem tItem">Bottom Force</th>
-  </tr>
-  </thead>
-</table>
+<div *ngIf="switches.length == 0; then noSwitches else switchTable"></div>
+<ng-template #noSwitches>
+  <app-notfound></app-notfound>
+</ng-template>
+<ng-template #switchTable>
+  <h1 class="titleBar" style="">{{brand}}</h1>
+  <br/>
+  <table class="switchTable">
+    <thead>
+    <tr class="headerRow">
+      <th class="tHeaderItem tItem TLCorner">Brand</th>
+      <th class="tHeaderItem tItem">Model</th>
+      <th class="tHeaderItem tItem">Type</th>
+      <th class="tHeaderItem tItem">Actuation Distance</th>
+      <th class="tHeaderItem tItem">Bottom Distance</th>
+      <th (click)="sortTable(switches, 'bottom_force', 'asc')"  class="tHeaderItem tItem">Operating Force</th>
+      <th (click)="sortTable(switches, 'bottom_force', 'desc')" class="tHeaderItem tItem TRCorner">Bottom Force</th>
+    </tr>
+    <tr *ngFor="let swotch of switches" class="tRow">
+      <td class="tItem">{{swotch.brand}}</td>
+      <td class="tItem">{{swotch.model}}</td>
+      <td class="tItem capitalize">{{swotch.type}}</td>
+      <td class="tItem">{{parseFloat(swotch.actuation_distance)}}</td>
+      <td class="tItem">{{parseFloat(swotch.bottom_distance)}}</td>
+      <td class="tItem">{{parseFloat(swotch.operating_force)}}</td>
+      <td class="tItem">{{parseFloat(swotch.bottom_force)}}</td>
+    </tr>
+    </thead>
+  </table>
+</ng-template>

@@ -9,10 +9,44 @@
   margin-right: auto;
 }
 
+.headerRow {
+  background-color: lightgray;
+}
+
 .tHeaderItem {
-  padding: 1em;
+  padding: 1.2em;
+  font-size: 1.5em;
+  border-bottom: black solid 1px;
+}
+
+.tHeaderItem:hover {
+  background-color: #e6e6e6;
+  cursor: pointer;
+}
+
+.TLCorner {
+  border-top-left-radius: 25px;
+}
+
+.TRCorner {
+  border-top-right-radius: 25px;
 }
 
 .tItem {
+  padding: 0.5em 1.2em;
+  text-align: center;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+
+.tRow {
   background-color: lightgray;
+}
+
+.tRow:hover {
+  background-color: #e6e6e6;
+  cursor: pointer;
 }
