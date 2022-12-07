@@ -1,31 +1,42 @@
-<!--TODO: Make the table again-->
-<div *ngIf="switches.length == 0; then noSwitches else switchTable"></div>
-<ng-template #noSwitches>
-  <app-notfound></app-notfound>
+<!--First if statement to put the loader when the page isn't ready-->
+<div *ngIf="loaded == true; then pageContent else loader"></div>
+<ng-template #pageContent>
+  <!--Determines if the 404 should be displayed or the switch table-->
+  <div *ngIf="isSwitchesEmpty == true; then noSwitches else switchTable"></div>
+  <!--404 Page for no switches-->
+  <ng-template #noSwitches>
+    <app-notfound></app-notfound>
+  </ng-template>
+  <!--Switch Table-->
+  <ng-template #switchTable>
+    <h1 class="titleBar" style="">{{brand}}</h1>
+    <br/>
+    <table class="switchTable">
+      <thead>
+      <tr class="headerRow">
+        <th (click)="sortTable(switches, 'brand')" class="tHeaderItem tItem TLCorner">Brand</th>
+        <th (click)="sortTable(switches, 'model')" class="tHeaderItem tItem">Model</th>
+        <th (click)="sortTable(switches, 'type')" class="tHeaderItem tItem">Type</th>
+        <th (click)="sortTable(switches, 'actuation_distance')" class="tHeaderItem tItem">Actuation Distance</th>
+        <th (click)="sortTable(switches, 'bottom_distance')" class="tHeaderItem tItem">Bottom Distance</th>
+        <th (click)="sortTable(switches, 'operating_force')" class="tHeaderItem tItem">Operating Force</th>
+        <th (click)="sortTable(switches, 'bottom_force')" class="tHeaderItem tItem TRCorner">Bottom Force</th>
+      </tr>
+      <!--I had to put keySwitch kuz switch statements exist lmao-->
+      <tr *ngFor="let keySwitch of switches" class="tRow">
+        <td class="tItem">{{keySwitch.brand}}</td>
+        <td class="tItem">{{keySwitch.model}}</td>
+        <td class="tItem capitalize">{{keySwitch.type}}</td>
+        <td class="tItem">{{parseFloat(keySwitch.actuation_distance)}}</td>
+        <td class="tItem">{{parseFloat(keySwitch.bottom_distance)}}</td>
+        <td class="tItem">{{parseFloat(keySwitch.operating_force)}}</td>
+        <td class="tItem">{{parseFloat(keySwitch.bottom_force)}}</td>
+      </tr>
+      </thead>
+    </table>
+  </ng-template>
 </ng-template>
-<ng-template #switchTable>
-  <h1 class="titleBar" style="">{{brand}}</h1>
-  <br/>
-  <table class="switchTable">
-    <thead>
-    <tr class="headerRow">
-      <th class="tHeaderItem tItem TLCorner">Brand</th>
-      <th class="tHeaderItem tItem">Model</th>
-      <th class="tHeaderItem tItem">Type</th>
-      <th class="tHeaderItem tItem">Actuation Distance</th>
-      <th class="tHeaderItem tItem">Bottom Distance</th>
-      <th (click)="sortTable(switches, 'bottom_force', 'asc')"  class="tHeaderItem tItem">Operating Force</th>
-      <th (click)="sortTable(switches, 'bottom_force', 'desc')" class="tHeaderItem tItem TRCorner">Bottom Force</th>
-    </tr>
-    <tr *ngFor="let swotch of switches" class="tRow">
-      <td class="tItem">{{swotch.brand}}</td>
-      <td class="tItem">{{swotch.model}}</td>
-      <td class="tItem capitalize">{{swotch.type}}</td>
-      <td class="tItem">{{parseFloat(swotch.actuation_distance)}}</td>
-      <td class="tItem">{{parseFloat(swotch.bottom_distance)}}</td>
-      <td class="tItem">{{parseFloat(swotch.operating_force)}}</td>
-      <td class="tItem">{{parseFloat(swotch.bottom_force)}}</td>
-    </tr>
-    </thead>
-  </table>
+<!--Page loader-->
+<ng-template #loader>
+  <app-loader></app-loader>
 </ng-template>
