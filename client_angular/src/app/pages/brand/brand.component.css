@@ -17,11 +17,13 @@
   padding: 1.2em;
   font-size: 1.5em;
   border-bottom: black solid 1px;
+  resize: none;
 }
 
 .tHeaderItem:hover {
   background-color: #e6e6e6;
   cursor: pointer;
+  resize: none;
 }
 
 .TLCorner {

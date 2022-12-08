@@ -13,6 +13,16 @@ interface Switch {
   bottom_force: number;
 }
 
+interface HeaderTitles {
+  brand: string;
+  model: string;
+  type: string;
+  actuation_distance: string;
+  bottom_distance: string;
+  operating_force: string;
+  bottom_force: string;
+}
+
 @Component({
   selector: 'app-brand',
   templateUrl: './brand.component.html',
@@ -22,10 +32,20 @@ export class BrandComponent {
   brand: string | null = "";
   switches: Switch[] = [];
   loaded: boolean = false;
+  // This is becoming a fucking disaster
   isSwitchesEmpty: boolean = true;
   currentSortDirectionIsAsc: boolean = true;
   currentSortField: string = 'model';
-
+  lastSortField: string = 'model';
+  headerTitles: {[index: string]:any} = {
+    brand: "Brand",
+    model: "Model ▼",
+    type: "Type",
+    actuation_distance: "Actuation Distance",
+    bottom_distance: "Bottom Distance",
+    operating_force: "Operating Force",
+    bottom_force: "Bottom Force"
+  }
   constructor(
     private readonly route: ActivatedRoute,
     private readonly router: Router,
@@ -40,9 +60,17 @@ export class BrandComponent {
       this.currentSortField = key;
       this.switches = this.TabletoolsService.sortJSON(data, key, true);
       this.currentSortDirectionIsAsc = true;
+      this.headerTitles[this.lastSortField] = this.headerTitles[this.lastSortField].slice(0, -2);
+      this.headerTitles[key] = String(this.headerTitles[key] + " ▼");
+      this.lastSortField = key;
     } else {
       this.currentSortField = key;
       this.switches = this.TabletoolsService.sortJSON(data, key, !this.currentSortDirectionIsAsc);
+      if (this.currentSortDirectionIsAsc) {
+        this.headerTitles[this.currentSortField] = this.headerTitles[this.currentSortField].replace("▼", "▲");
+      } else {
+        this.headerTitles[this.currentSortField] = this.headerTitles[this.currentSortField].replace("▲", "▼");
+      }
       this.currentSortDirectionIsAsc = !this.currentSortDirectionIsAsc;
     }
     console.log(this.currentSortDirectionIsAsc)
