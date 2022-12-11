@@ -1,0 +1,12 @@
+<div class="allButtonContainer">
+  <a routerLink="/brand" class="allButton">View All</a>
+<!--TODO: Create 2nd button to select brands with its functionality, using display: block; maybe?-->
+</div>
+<div class="cards">
+  <div class="card" *ngFor="let brand of brands">
+    <a [routerLink]="['/brand', brand['name']]">
+      <img class='cardLogo' [src]="brand['logo']" [alt]="brand['name']"/>
+      <span class="cardText">{{brand['name']}}</span>
+    </a>
+  </div>
+</div>
