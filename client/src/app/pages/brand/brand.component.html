@@ -1,0 +1,46 @@
+<!--First if statement to put the loader when the page isn't ready-->
+<div *ngIf="loaded == true; then pageContent else loader"></div>
+<ng-template #pageContent>
+  <!--Determines if the 404 should be displayed or the switch table-->
+  <div *ngIf="isSwitchesEmpty == true; then noSwitches else switchTable"></div>
+  <!--404 Page for no switches-->
+  <ng-template #noSwitches>
+    <app-notfound></app-notfound>
+  </ng-template>
+  <!--Switch Table-->
+  <ng-template #switchTable>
+    <h1 class="titleBar">{{brand}}</h1>
+    <br/>
+    <table class="switchTable">
+      <thead>
+      <tr class="headerRow">
+        <th (click)="sortTable(switches, 'brand')" class="tHeaderItem tItem TLCorner">{{headerTitles['brand']}}</th>
+        <th (click)="sortTable(switches, 'model')" class="tHeaderItem tItem">{{headerTitles['model']}}</th>
+        <th (click)="sortTable(switches, 'type')" class="tHeaderItem tItem">{{headerTitles['type']}}</th>
+        <th (click)="sortTable(switches, 'actuation_distance')"
+            class="tHeaderItem tItem">{{headerTitles['actuation_distance']}}</th>
+        <th (click)="sortTable(switches, 'bottom_distance')"
+            class="tHeaderItem tItem">{{headerTitles['bottom_distance']}}</th>
+        <th (click)="sortTable(switches, 'operating_force')"
+            class="tHeaderItem tItem">{{headerTitles['operating_force']}}</th>
+        <th (click)="sortTable(switches, 'bottom_force')"
+            class="tHeaderItem tItem TRCorner">{{headerTitles['bottom_force']}}</th>
+      </tr>
+      <!--I had to put keySwitch kuz switch statements exist lmao-->
+      <tr *ngFor="let keySwitch of switches" class="tRow">
+        <td class="tItem">{{keySwitch.brand}}</td>
+        <td class="tItem">{{keySwitch.model}}</td>
+        <td class="tItem capitalize">{{keySwitch.type}}</td>
+        <td class="tItem">{{parseFloat(keySwitch.actuation_distance)}}</td>
+        <td class="tItem">{{parseFloat(keySwitch.bottom_distance)}}</td>
+        <td class="tItem">{{parseFloat(keySwitch.operating_force)}}</td>
+        <td class="tItem">{{parseFloat(keySwitch.bottom_force)}}</td>
+      </tr>
+      </thead>
+    </table>
+  </ng-template>
+</ng-template>
+<!--Page loader-->
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

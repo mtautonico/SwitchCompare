@@ -1,8 +1,0 @@
-<div class="cards">
-  <div class="card" *ngFor="let brand of brands">
-    <a [routerLink]="['/brand', brand['name']]">
-      <img class='cardLogo' [src]="brand['logo']" [alt]="brand['name']"/>
-      <span class="cardText">{{brand['name']}}</span>
-    </a>
-  </div>
-</div>
