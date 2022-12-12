@@ -1,10 +1,16 @@
 <div class="allButtonContainer">
-  <a routerLink="/brand" class="allButton">View All</a>
-<!--TODO: Create 2nd button to select brands with its functionality, using display: block; maybe?-->
+  <a *ngIf="!isSelectedToggled" routerLink="/brand" class="allButton">View All</a>
+<!--  TODO: Replace x with amount of brands and handle a situation with 0 switches detected-->
+  <a *ngIf="isSelectedToggled" (click)="parseSelectedBrands()" routerLink="/brand" class="allButton">Select x Brands</a>
+  <a (click)="toggleSelect()"  [ngClass]="isSelectedToggled ? 'selectOn' : 'selectOff' " class="selectButton">Select Brands</a>
 </div>
+<!--TODO: List view-->
 <div class="cards">
-  <div class="card" *ngFor="let brand of brands">
-    <a [routerLink]="['/brand', brand['name']]">
+  <div [ngClass]="checkSelect(brand['name']) ? 'selected' : 'card'"
+       class="card"
+       (click)="handleClick(brand['name'])"
+       *ngFor="let brand of brands">
+    <a>
       <img class='cardLogo' [src]="brand['logo']" [alt]="brand['name']"/>
       <span class="cardText">{{brand['name']}}</span>
     </a>

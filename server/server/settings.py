@@ -28,7 +28,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.1.242", "127.0.0.1", "localhost", "192.168.1.111"]
+ALLOWED_HOSTS = ["192.168.1.242", "127.0.0.1", "localhost", "192.168.1.111", "192.168.1.136"]
 
 # Application definition
 

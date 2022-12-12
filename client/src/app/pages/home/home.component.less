@@ -7,16 +7,40 @@
   color: black;
 }
 
+.allButton {
+  margin-right: 10px;
+}
+
+.selectButton {
+  margin-right: 0.5em;
+  padding: 10px 25px;
+  border-radius: 5px;
+  user-select: none;
+  text-decoration: none;
+  color: black;
+}
+
+.selectOn {
+  background-color: green;
+}
+
+.selectOff {
+  background-color: red;
+}
+
 .allButton:hover {
   background-color: #d4d4d4;
   cursor: pointer;
-
 }
 
 .allButtonContainer {
+  direction: rtl;
   padding-top: 2%;
-  text-align: center;
+  padding-right: 1%;
+}
 
+.selectButton {
+  margin-left: auto;
 }
 
 .cards {
@@ -57,4 +81,12 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
+}
+
+.selected {
+  background-color: #bbdeaf !important;
+}
+
+.selected:hover {
+  background-color: #8bb57d !important;
 }

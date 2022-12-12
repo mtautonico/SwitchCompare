@@ -37,7 +37,7 @@ export class BrandComponent {
   currentSortDirectionIsAsc: boolean = true;
   currentSortField: string = 'model';
   lastSortField: string = 'model';
-  headerTitles: {[index: string]:any} = {
+  headerTitles: { [index: string]: any } = {
     brand: "Brand",
     model: "Model ▼",
     type: "Type",
@@ -46,6 +46,7 @@ export class BrandComponent {
     operating_force: "Operating Force",
     bottom_force: "Bottom Force"
   }
+
   constructor(
     private readonly route: ActivatedRoute,
     private readonly router: Router,
@@ -86,10 +87,19 @@ export class BrandComponent {
     this.route.paramMap.subscribe(params => {
       this.brand = params.get("brandName")
     });
-    if (this.brand == undefined) {
+    if (history.state.data != undefined) {
+      for (let i = 0; i < history.state.data.length; i++) {
+        this.switches.push(await this.APIFetchService.getSwitches(history.state.data[i]));
+      }
+      this.switches = this.switches.flat();
+      console.log(this.switches)
+      console.log("triggered a")
+    } else if (this.brand == undefined) {
       this.switches = await this.APIFetchService.getSwitches();
+      console.log("triggered b")
     } else {
-      this.switches = await this.APIFetchService.getSwitches(this.brand)
+      this.switches = await this.APIFetchService.getSwitches(this.brand);
+      console.log("triggered c")
     }
     if (this.switches.length === 0) {
       this.isSwitchesEmpty = true;
@@ -100,6 +110,7 @@ export class BrandComponent {
     this.switches = this.TabletoolsService.sortJSON(this.switches, 'model', true);
     console.log(this.switches)
     this.loaded = true;
+    console.log(history.state.data)
   };
 }
 
