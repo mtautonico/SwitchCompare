@@ -10,6 +10,7 @@ import {BrandComponent} from './pages/brand/brand.component';
 import {NotfoundComponent} from './pages/notfound/notfound.component';
 import {LoaderComponent} from './components/loader/loader.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import { CompareComponent } from './pages/compare/compare.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     FooterComponent,
     BrandComponent,
     NotfoundComponent,
-    LoaderComponent
+    LoaderComponent,
+    CompareComponent
   ],
   imports: [
     BrowserModule,

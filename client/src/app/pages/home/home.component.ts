@@ -62,6 +62,7 @@ export class HomeComponent {
         this.finalSelectedBrands.push(this.selectedBrands[i].name);
       }
     }
+    // Were using state here to pass the selected brands variable to the next page
     this.router.navigate(['/brand'], {state: {data: this.finalSelectedBrands}});
   }
   async ngOnInit() {

@@ -12,17 +12,6 @@ interface Switch {
   operating_force: number;
   bottom_force: number;
 }
-
-interface HeaderTitles {
-  brand: string;
-  model: string;
-  type: string;
-  actuation_distance: string;
-  bottom_distance: string;
-  operating_force: string;
-  bottom_force: string;
-}
-
 @Component({
   selector: 'app-brand',
   templateUrl: './brand.component.html',
@@ -39,6 +28,7 @@ export class BrandComponent {
   lastSortField: string = 'model';
   headerTitles: { [index: string]: any } = {
     brand: "Brand",
+    // This has the arrow because it is sorted by default
     model: "Model ▼",
     type: "Type",
     actuation_distance: "Actuation Distance",
@@ -56,6 +46,7 @@ export class BrandComponent {
   }
 
   //  Sort the table by a given table field
+  // TODO: Label this disaster
   public sortTable(data: any, key: string) {
     if (this.currentSortField !== key) {
       this.currentSortField = key;
@@ -83,6 +74,11 @@ export class BrandComponent {
     return parseFloat(String(value));
   }
 
+  // We need the brand in case theres a situation where 2 brands have the same model name
+  compareSwitch(selectedBrand: string, selectedSwitch: string) {
+
+  }
+  // TODO: Label this disaster too
   async ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.brand = params.get("brandName")

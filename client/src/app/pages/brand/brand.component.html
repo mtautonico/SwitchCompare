@@ -27,7 +27,7 @@
             class="tHeaderItem tItem TRCorner">{{headerTitles['bottom_force']}}</th>
       </tr>
       <!--I had to put keySwitch kuz switch statements exist lmao-->
-      <tr *ngFor="let keySwitch of switches" class="tRow">
+      <tr *ngFor="let keySwitch of switches" class="tRow" (click)="compareSwitch(keySwitch.brand, keySwitch.model)">
         <td class="tItem">{{keySwitch.brand}}</td>
         <td class="tItem">{{keySwitch.model}}</td>
         <td class="tItem capitalize">{{keySwitch.type}}</td>
