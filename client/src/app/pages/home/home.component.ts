@@ -16,10 +16,9 @@ interface SelectedBrands {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less']
+  styleUrls: ['./home.component.less', './home.component_list.less']
 })
 export class HomeComponent {
-
   constructor(private APIFetchService: APIFetchService,
               private TabletoolsService: TabletoolsService,
               private router: Router) {
@@ -29,6 +28,7 @@ export class HomeComponent {
   selectedBrands: SelectedBrands[] = [];
   finalSelectedBrands: string[] = [];
   brands: Brand[] = [];
+  listMode: boolean = false;
 
   toggleSelect() {
     this.isSelectedToggled = !this.isSelectedToggled;
@@ -38,10 +38,12 @@ export class HomeComponent {
     }
     console.log(this.isSelectedToggled);
   }
+
   // Idk why this has to be here, angular doesnt like the function to be inline
   checkSelect(item: string) {
     return this.selectedBrands[this.selectedBrands.findIndex(x => x.name === item)].selected;
   }
+
   // Handles the click to determine if the user wants to select/deselect a brand or go to the brand page
   handleClick(item: string) {
     if (this.isSelectedToggled) {
@@ -55,6 +57,7 @@ export class HomeComponent {
       this.router.navigate(['/brand', item])
     }
   }
+
   // Creates a final list of your selected brands to send it to the brand page
   parseSelectedBrands() {
     for (let i = 0; i < this.selectedBrands.length; i++) {
@@ -65,6 +68,7 @@ export class HomeComponent {
     // Were using state here to pass the selected brands variable to the next page
     this.router.navigate(['/brand'], {state: {data: this.finalSelectedBrands}});
   }
+
   async ngOnInit() {
     // Sorts the brands alphabetically
     this.brands = this.TabletoolsService.sortJSON(await this.APIFetchService.getBrands(), 'name', true);

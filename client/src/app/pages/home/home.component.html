@@ -1,18 +1,35 @@
 <div class="allButtonContainer">
   <a *ngIf="!isSelectedToggled" routerLink="/brand" class="allButton">View All</a>
-<!--  TODO: Replace x with amount of brands and handle a situation with 0 switches detected-->
+  <!--  TODO: Replace x with amount of brands and handle a situation with 0 switches detected-->
   <a *ngIf="isSelectedToggled" (click)="parseSelectedBrands()" routerLink="/brand" class="allButton">Select x Brands</a>
-  <a (click)="toggleSelect()"  [ngClass]="isSelectedToggled ? 'selectOn' : 'selectOff' " class="selectButton">Select Brands</a>
+  <a (click)="toggleSelect()" [ngClass]="isSelectedToggled ? 'selectOn' : 'selectOff' " class="selectButton">Select
+    Brands</a>
+  <!--  TODO: Replace the list mode button with a switch and a simple list icon-->
+  <a (click)="listMode = !listMode" [ngClass]="listMode ? 'selectOn' : 'selectOff' " class="selectButton">List Mode</a>
 </div>
 <!--TODO: List view-->
-<div class="cards">
-  <div [ngClass]="checkSelect(brand['name']) ? 'selected' : 'card'"
-       class="card"
-       (click)="handleClick(brand['name'])"
-       *ngFor="let brand of brands">
-    <a>
-      <img class='cardLogo' [src]="brand['logo']" [alt]="brand['name']"/>
-      <span class="cardText">{{brand['name']}}</span>
-    </a>
+<div *ngIf="listMode; then lists else cardView"></div>
+<ng-template #lists>
+  <table class="brandList">
+    <tr *ngFor="let brand of brands" class="brandListItem">
+      <td>
+        <img src='{{brand.logo}}' class="brandListImage" alt="{{brand.name}} logo"/>
+      </td>
+      <td class="brandText">{{brand.name}}</td>
+    </tr>
+    </table>
+</ng-template>
+<!--View the items in card view-->
+<ng-template #cardView>
+  <div class="cards">
+    <div [ngClass]="checkSelect(brand['name']) ? 'selected' : 'card'"
+         class="card"
+         (click)="handleClick(brand['name'])"
+         *ngFor="let brand of brands">
+      <a>
+        <img class='cardLogo' [src]="brand['logo']" [alt]="brand['name']"/>
+        <span class="cardText">{{brand['name']}}</span>
+      </a>
+    </div>
   </div>
-</div>
+</ng-template>
