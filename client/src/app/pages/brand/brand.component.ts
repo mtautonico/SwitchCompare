@@ -56,7 +56,6 @@ export class BrandComponent {
       this.headerTitles[key] = String(this.headerTitles[key] + " ▼");
       this.lastSortField = key;
     } else {
-      this.currentSortField = key;
       this.switches = this.TabletoolsService.sortJSON(data, key, !this.currentSortDirectionIsAsc);
       if (this.currentSortDirectionIsAsc) {
         this.headerTitles[this.currentSortField] = this.headerTitles[this.currentSortField].replace("▼", "▲");

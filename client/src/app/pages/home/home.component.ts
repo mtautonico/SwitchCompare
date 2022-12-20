@@ -16,7 +16,7 @@ interface SelectedBrands {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less', './home.component_list.less']
+  styleUrls: ['./home.component.less']
 })
 export class HomeComponent {
   constructor(private APIFetchService: APIFetchService,
@@ -28,7 +28,6 @@ export class HomeComponent {
   selectedBrands: SelectedBrands[] = [];
   finalSelectedBrands: string[] = [];
   brands: Brand[] = [];
-  listMode: boolean = false;
 
   toggleSelect() {
     this.isSelectedToggled = !this.isSelectedToggled;
