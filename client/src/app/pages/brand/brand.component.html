@@ -9,35 +9,79 @@
   </ng-template>
   <!--Switch Table-->
   <ng-template #switchTable>
-    <h1 class="titleBar">{{brand}}</h1>
     <br/>
-    <table class="switchTable">
-      <thead>
-      <tr class="headerRow">
-        <th (click)="sortTable(switches, 'brand')" class="tHeaderItem tItem TLCorner">{{headerTitles['brand']}}</th>
-        <th (click)="sortTable(switches, 'model')" class="tHeaderItem tItem">{{headerTitles['model']}}</th>
-        <th (click)="sortTable(switches, 'type')" class="tHeaderItem tItem">{{headerTitles['type']}}</th>
-        <th (click)="sortTable(switches, 'actuation_distance')"
-            class="tHeaderItem tItem">{{headerTitles['actuation_distance']}}</th>
-        <th (click)="sortTable(switches, 'bottom_distance')"
-            class="tHeaderItem tItem">{{headerTitles['bottom_distance']}}</th>
-        <th (click)="sortTable(switches, 'operating_force')"
-            class="tHeaderItem tItem">{{headerTitles['operating_force']}}</th>
-        <th (click)="sortTable(switches, 'bottom_force')"
-            class="tHeaderItem tItem TRCorner">{{headerTitles['bottom_force']}}</th>
-      </tr>
-      <!--I had to put keySwitch kuz switch statements exist lmao-->
-      <tr *ngFor="let keySwitch of switches" class="tRow" (click)="compareSwitch(keySwitch.brand, keySwitch.model)">
-        <td class="tItem">{{keySwitch.brand}}</td>
-        <td class="tItem">{{keySwitch.model}}</td>
-        <td class="tItem capitalize">{{keySwitch.type}}</td>
-        <td class="tItem">{{parseFloat(keySwitch.actuation_distance)}}</td>
-        <td class="tItem">{{parseFloat(keySwitch.bottom_distance)}}</td>
-        <td class="tItem">{{parseFloat(keySwitch.operating_force)}}</td>
-        <td class="tItem">{{parseFloat(keySwitch.bottom_force)}}</td>
-      </tr>
-      </thead>
-    </table>
+    <div class="body_contents">
+      <div class="filterPanel">
+        <div class="filterPanelTitle">
+          <h3>Filter</h3>
+          <h3>TODO: Make this</h3>
+          <!--TODO: Make a list of things to filter through-->
+        </div>
+      </div>
+
+      <!--  Switch Table    -->
+      <div style="display: inline">
+        <h1 class="titleBar">{{brand}}</h1>
+        <table class="switchTable">
+          <thead>
+          <tr class="headerRow">
+            <th (click)="sortTable(switches, 'brand')" class="tHeaderItem tItem">
+              <div class="headerContainer arrowUp" [class.arrowUp]="headerSort.brand == 'asc'"
+                   [class.arrowDown]="headerSort.brand == 'desc'">
+                <span class="tHeaderText">Brand</span>
+              </div>
+            </th>
+            <th (click)="sortTable(switches, 'model')" class="tHeaderItem tItem">
+              <div class="headerContainer" [class.arrowUp]="headerSort.model == 'asc'"
+                   [class.arrowDown]="headerSort.model == 'desc'">
+                <span class="tHeaderText">Model</span>
+              </div>
+            </th>
+            <th (click)="sortTable(switches, 'type')" class="tHeaderItem tItem">
+              <div class="headerContainer" [class.arrowUp]="headerSort.type == 'asc'"
+                   [class.arrowDown]="headerSort.type == 'desc'">
+                <span class="tHeaderText">Type</span>
+              </div>
+            </th>
+            <th (click)="sortTable(switches, 'actuation_distance')" class="tHeaderItem tItem">
+              <div class="headerContainer" [class.arrowUp]="headerSort.actuation_distance == 'asc'"
+                   [class.arrowDown]="headerSort.actuation_distance == 'desc'">
+                <span class="tHeaderText">Actuation<br/>Distance</span>
+              </div>
+            </th>
+            <th (click)="sortTable(switches, 'bottom_distance')" class="tHeaderItem tItem">
+              <div class="headerContainer" [class.arrowUp]="headerSort.bottom_distance == 'asc'"
+                   [class.arrowDown]="headerSort.bottom_distance == 'desc'">
+                <span class="tHeaderText">Bottom<br/>Distance</span>
+              </div>
+            </th>
+            <th (click)="sortTable(switches, 'operating_force')" class="tHeaderItem tItem">
+              <div class="headerContainer" [class.arrowUp]="headerSort.operating_force == 'asc'"
+                   [class.arrowDown]="headerSort.operating_force == 'desc'">
+                <span class="tHeaderText">Operating<br/>Force</span>
+              </div>
+            </th>
+            <th (click)="sortTable(switches, 'bottom_force')" class="tHeaderItem tItem TRCorner">
+              <div class="headerContainer" [class.arrowUp]="headerSort.bottom_force == 'asc'"
+                   [class.arrowDown]="headerSort.bottom_force == 'desc'">
+                <span class="tHeaderText">Bottom<br/>Force</span>
+              </div>
+            </th>
+          </tr>
+          <!--I had to put keySwitch kuz switch statements exist lmao-->
+          <tr *ngFor="let keySwitch of switches" class="tRow" (click)="compareSwitch(keySwitch.brand, keySwitch.model)">
+            <td class="tItem">{{keySwitch.brand}}</td>
+            <td class="tItem">{{keySwitch.model}}</td>
+            <td class="tItem capitalize">{{keySwitch.type}}</td>
+            <td class="tItem">{{parseFloat(keySwitch.actuation_distance)}}</td>
+            <td class="tItem">{{parseFloat(keySwitch.bottom_distance)}}</td>
+            <td class="tItem">{{parseFloat(keySwitch.operating_force)}}</td>
+            <td class="tItem">{{parseFloat(keySwitch.bottom_force)}}</td>
+          </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
   </ng-template>
 </ng-template>
 <!--Page loader-->

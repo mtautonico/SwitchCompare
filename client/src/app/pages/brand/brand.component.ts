@@ -12,6 +12,7 @@ interface Switch {
   operating_force: number;
   bottom_force: number;
 }
+
 @Component({
   selector: 'app-brand',
   templateUrl: './brand.component.html',
@@ -21,22 +22,19 @@ export class BrandComponent {
   brand: string | null = "";
   switches: Switch[] = [];
   loaded: boolean = false;
-  // This is becoming a fucking disaster
   isSwitchesEmpty: boolean = true;
   currentSortDirectionIsAsc: boolean = true;
   currentSortField: string = 'model';
   lastSortField: string = 'model';
-  headerTitles: { [index: string]: any } = {
-    brand: "Brand",
-    // This has the arrow because it is sorted by default
-    model: "Model ▼",
-    type: "Type",
-    actuation_distance: "Actuation Distance",
-    bottom_distance: "Bottom Distance",
-    operating_force: "Operating Force",
-    bottom_force: "Bottom Force"
+  headerSort: any = {
+    brand: null,
+    model: null,
+    type: null,
+    actuation_distance: null,
+    bottom_distance: null,
+    operating_force: null,
+    bottom_force: null
   }
-
   constructor(
     private readonly route: ActivatedRoute,
     private readonly router: Router,
@@ -52,15 +50,15 @@ export class BrandComponent {
       this.currentSortField = key;
       this.switches = this.TabletoolsService.sortJSON(data, key, true);
       this.currentSortDirectionIsAsc = true;
-      this.headerTitles[this.lastSortField] = this.headerTitles[this.lastSortField].slice(0, -2);
-      this.headerTitles[key] = String(this.headerTitles[key] + " ▼");
+      this.headerSort[this.lastSortField] = null;
+      this.headerSort[key] = "asc";
       this.lastSortField = key;
     } else {
       this.switches = this.TabletoolsService.sortJSON(data, key, !this.currentSortDirectionIsAsc);
       if (this.currentSortDirectionIsAsc) {
-        this.headerTitles[this.currentSortField] = this.headerTitles[this.currentSortField].replace("▼", "▲");
-      } else {
-        this.headerTitles[this.currentSortField] = this.headerTitles[this.currentSortField].replace("▲", "▼");
+        this.headerSort[this.currentSortField] = 'desc'
+        } else {
+          this.headerSort[this.currentSortField] = 'asc';
       }
       this.currentSortDirectionIsAsc = !this.currentSortDirectionIsAsc;
     }
@@ -73,10 +71,15 @@ export class BrandComponent {
     return parseFloat(String(value));
   }
 
+
+  // TODO: Make a function to filter through the data and set said filtered data to a separate variable
+
+
   // We need the brand in case theres a situation where 2 brands have the same model name
   compareSwitch(selectedBrand: string, selectedSwitch: string) {
 
   }
+
   // TODO: Label this disaster too
   async ngOnInit() {
     this.route.paramMap.subscribe(params => {

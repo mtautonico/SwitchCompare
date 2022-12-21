@@ -4,35 +4,27 @@
   text-decoration: underline;
 }
 
-.switchTable {
-  margin-left: auto;
-  margin-right: auto;
+.body_contents {
+  display: flex;
 }
 
-.headerRow {
-  background-color: lightgray;
+.filterPanel {
+  padding: 1em;
+  border: 1px solid black;
 }
-
 .tHeaderItem {
   padding: 1.2em;
   font-size: 1.5em;
   border-bottom: black solid 1px;
-  resize: none;
+  text-align: center;
+  vertical-align: middle;
 
   &:hover {
-    background-color: #e6e6e6;
+    background-color: #f7f7f7;
     cursor: pointer;
     resize: none;
   }
 }
-
-/*.TLCorner {*/
-/*  border-top-left-radius: 25px;*/
-/*}*/
-
-/*.TRCorner {*/
-/*  border-top-right-radius: 25px;*/
-/*}*/
 
 .first {
   border-top-left-radius: 25px;
@@ -52,19 +44,34 @@
 
 
 .tRow {
-  background-color: lightgray;
-
   &:hover {
-    background-color: #e6e6e6;
+    background-color: #f7f7f7;
     cursor: pointer;
   }
 }
 
-//.hasArrowDown::after {
-//  content: "▼";
-//  margin-left: 0.5em;
-//}
-//.hasArrowUp::after {
-//  content: "▲";
-//  margin-left: 0.5em;
-//}
+.headerContainer {
+  padding: 1em 1.2em;
+  position: relative;
+  // Background settings for the sort arrow
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tHeaderText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+}
+
+
+.arrowDown {
+  background-image: url("../../../assets/arrowDown.png");
+}
+
+.arrowUp {
+  background-image: url("../../../assets/arrowUp.png");
+}

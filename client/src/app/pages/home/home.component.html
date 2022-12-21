@@ -4,16 +4,15 @@
   <a *ngIf="isSelectedToggled" (click)="parseSelectedBrands()" routerLink="/brand" class="allButton">Select x Brands</a>
   <a (click)="toggleSelect()" [ngClass]="isSelectedToggled ? 'selectOn' : 'selectOff' " class="selectButton">Select
     Brands</a>
-  <!--  TODO: Replace the list mode button with a switch and a simple list icon-->
 </div>
-  <div class="cards">
-    <div [ngClass]="checkSelect(brand['name']) ? 'selected' : 'card'"
-         class="card"
-         (click)="handleClick(brand['name'])"
-         *ngFor="let brand of brands">
-      <a>
-        <img class='cardLogo' [src]="brand['logo']" [alt]="brand['name']"/>
-        <span class="cardText">{{brand['name']}}</span>
-      </a>
-    </div>
+<div class="cards">
+  <div [ngClass]="checkSelect(brand['name']) ? 'selected' : 'card'"
+       class="card"
+       (click)="handleClick(brand['name'])"
+       *ngFor="let brand of brands">
+    <a>
+      <img class='cardLogo' [src]="brand['logo']" [alt]="brand['name']"/>
+      <span class="cardText">{{brand['name']}}</span>
+    </a>
   </div>
+</div>
