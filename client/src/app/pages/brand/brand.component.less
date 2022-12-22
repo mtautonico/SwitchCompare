@@ -1,3 +1,10 @@
+// Remove the stupid arrows from number input fields
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .titleBar {
   font-size: 48px;
   text-align: center;
@@ -5,13 +12,66 @@
 }
 
 .body_contents {
+  padding: 0;
+  margin: 0;
+  justify-content: center;
   display: flex;
+  transform: translate(-8%);
+}
+
+.switchDiv {
+  display: inline-block;
+  float: left;
+  margin-top: 3%;
 }
 
 .filterPanel {
-  padding: 1em;
-  border: 1px solid black;
+  display: inline-block;
+  float: left;
+  width: auto;
+  margin-left: 5%;
+  margin-top: 3%;
+  margin-right: 2%;
 }
+.sortSectionTitle {
+  font-weight: bold;
+}
+
+.typeFilterText {
+  user-select: none;
+}
+
+.rangeValue {
+  width: 2em;
+}
+
+.minMaxBox {
+  display: inline-block;
+  padding-bottom: 1em;
+}
+
+
+.filterActionButtons {
+  padding: 7px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  user-select: none;
+
+  &&:hover {
+    cursor: pointer;
+  }
+}
+
+.resetButton {
+  border: 1.5px solid lightgray;
+  margin-right: 1em;
+}
+
+.applyButton {
+  background-color: deepskyblue;
+  color: white;
+}
+
 .tHeaderItem {
   padding: 1.2em;
   font-size: 1.5em;

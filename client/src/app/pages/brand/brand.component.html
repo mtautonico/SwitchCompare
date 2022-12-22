@@ -12,16 +12,47 @@
     <br/>
     <div class="body_contents">
       <div class="filterPanel">
-        <div class="filterPanelTitle">
-          <h3>Filter</h3>
-          <h3>TODO: Make this</h3>
-          <!--TODO: Make a list of things to filter through-->
+        <div class="filterPanelContent">
+          <div class="typeFilters">
+            <span class="sortSectionTitle">Type</span>
+            <br/>
+            <!--Clicky filter-->
+            <input type="checkbox" [(ngModel)]="filters.type['clicky']" id="clicky" name="clicky" value="clicky"/>
+            <label class="typeFilterText" for="clicky">Clicky</label>
+            <br/>
+            <!--Linear filter-->
+            <input type="checkbox" [(ngModel)]="filters.type['linear']" id="linear" name="linear" value="linear"/>
+            <label class="typeFilterText" for="linear">Linear</label>
+            <br/>
+            <!--Tactile filter-->
+            <input type="checkbox" [(ngModel)]="filters.type['tactile']" id="tactile" name="tactile" value="tactile"/>
+            <label class="typeFilterText" for="tactile">Tactile</label>
+            <hr style="
+                  border: 0;
+                  height: 1px;
+                  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));"
+            />
+          </div>
+          <div *ngFor="let range of range_filters">
+            <div class="rangeFilter">
+              <span class="sortSectionTitle" style="text-transform: capitalize">{{range.replace('_', ' ')}}</span>
+              <br/>
+              <div class= "minMaxBox">
+                <input class="rangeValue" [(ngModel)]="filters[range]['min']" placeholder="Min" type="number">
+                <span>mm</span>
+                <span style="padding: 0 5px">-</span>
+                <input class="rangeValue" [(ngModel)]="filters[range]['max']" placeholder="Max" type="number">
+                <span>mm</span>
+              </div>
+            </div>
+          </div>
+          <span (click)="resetFilters()" class="filterActionButtons resetButton">Reset</span>
+          <span class="filterActionButtons applyButton">Apply</span>
         </div>
       </div>
 
       <!--  Switch Table    -->
-      <div style="display: inline">
-        <h1 class="titleBar">{{brand}}</h1>
+      <div class="switchDiv" style="display: inline">
         <table class="switchTable">
           <thead>
           <tr class="headerRow">

@@ -11,6 +11,7 @@ import {NotfoundComponent} from './pages/notfound/notfound.component';
 import {LoaderComponent} from './components/loader/loader.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { CompareComponent } from './pages/compare/compare.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -23,12 +24,13 @@ import { CompareComponent } from './pages/compare/compare.component';
     LoaderComponent,
     CompareComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FontAwesomeModule
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FontAwesomeModule,
+        FormsModule
 
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
