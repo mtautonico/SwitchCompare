@@ -5,20 +5,49 @@
   user-select: none;
   text-decoration: none;
   color: black;
+  margin-right: 10px;
 }
 .allButton:hover {
   background-color: #d4d4d4;
   cursor: pointer;
 }
+.selectButton {
+  margin-right: 0.5em;
+  padding: 10px 25px;
+  border-radius: 5px;
+  user-select: none;
+  text-decoration: none;
+  color: black;
+}
+.selectButton:hover {
+  cursor: pointer;
+}
+.selectOn {
+  background-color: #00a000;
+}
+.selectOn:hover {
+  background-color: #00f000 !important;
+}
+.selectOff {
+  background-color: #f00000;
+}
+.selectOff:hover {
+  background-color: red !important;
+}
 .allButtonContainer {
+  direction: rtl;
   padding-top: 2%;
-  text-align: center;
+  padding-right: 1%;
+}
+.selectButton {
+  margin-left: auto;
 }
 .cards {
   padding-left: 10%;
   padding-right: 10%;
   justify-content: center;
   display: flex;
+  user-select: none;
 }
 .cardLogo {
   filter: blur(5px);
@@ -48,5 +77,11 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
+}
+.selected {
+  background-color: #bbdeaf !important;
+}
+.selected:hover {
+  background-color: #8bb57d !important;
 }
 /*# sourceMappingURL=home.component.css.map */

@@ -28,6 +28,8 @@ export class HomeComponent {
   selectedBrands: SelectedBrands[] = [];
   finalSelectedBrands: string[] = [];
   brands: Brand[] = [];
+  darkTheme: boolean = true;
+
 
   toggleSelect() {
     this.isSelectedToggled = !this.isSelectedToggled;

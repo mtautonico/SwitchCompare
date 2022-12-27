@@ -1,32 +1,75 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .titleBar {
   font-size: 48px;
   text-align: center;
   text-decoration: underline;
 }
-.switchTable {
-  margin-left: auto;
-  margin-right: auto;
+.body_contents {
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  display: flex;
+  transform: translate(-8%);
 }
-.headerRow {
-  background-color: lightgray;
+.switchDiv {
+  display: inline-block;
+  float: left;
+  margin-top: 3%;
+}
+.filterPanel {
+  display: inline-block;
+  float: left;
+  width: auto;
+  margin-left: 5%;
+  margin-top: 3%;
+  margin-right: 2%;
+}
+.sortSectionTitle {
+  font-weight: bold;
+}
+.typeFilterText {
+  user-select: none;
+}
+.rangeValue {
+  width: 2em;
+}
+.minMaxBox {
+  display: inline-block;
+  padding-bottom: 1em;
+}
+.filterActionButtons {
+  padding: 7px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  user-select: none;
+}
+.filterActionButtons.filterActionButtons:hover {
+  cursor: pointer;
+}
+.resetButton {
+  border: 1.5px solid lightgray;
+  margin-right: 1em;
+}
+.applyButton {
+  background-color: deepskyblue;
+  color: white;
 }
 .tHeaderItem {
   padding: 1.2em;
   font-size: 1.5em;
   border-bottom: black solid 1px;
-  resize: none;
+  text-align: center;
+  vertical-align: middle;
 }
 .tHeaderItem:hover {
-  background-color: #e6e6e6;
+  background-color: #f7f7f7;
   cursor: pointer;
   resize: none;
 }
-/*.TLCorner {*/
-/*  border-top-left-radius: 25px;*/
-/*}*/
-/*.TRCorner {*/
-/*  border-top-right-radius: 25px;*/
-/*}*/
 .first {
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
@@ -39,11 +82,28 @@
 .capitalize {
   text-transform: capitalize;
 }
-.tRow {
-  background-color: lightgray;
-}
 .tRow:hover {
-  background-color: #e6e6e6;
+  background-color: #f7f7f7;
   cursor: pointer;
+}
+.headerContainer {
+  padding: 1em 1.2em;
+  position: relative;
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.tHeaderText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+}
+.arrowDown {
+  background-image: url("../../../assets/arrowDown.png");
+}
+.arrowUp {
+  background-image: url("../../../assets/arrowUp.png");
 }
 /*# sourceMappingURL=brand.component.css.map */
