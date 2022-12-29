@@ -1,5 +1,8 @@
+* span {
+  color: #dbdbdb;
+}
 .footer-container {
-  background-color: #e6e6e6;
+  background-color: #202020;
   height: 60px;
   position: fixed;
   left: 0;
@@ -13,13 +16,17 @@
   line-height: 60px;
 }
 .footerLink {
-  color: black;
+  color: #757575;
   text-decoration: none;
   /* no underline */
 }
 .kofi,
 .github {
   padding: 15px;
+}
+.kofiIcon {
+  width: 60px;
+  height: auto;
 }
 .footerLinks {
   padding-right: 1em;

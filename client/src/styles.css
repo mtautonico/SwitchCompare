@@ -28,6 +28,7 @@ time, mark, audio, video {
 
 html, body, app-root {
   height: 100%;
+  background-color: #1c1c1c;
 }
 
 /* HTML5 display-role reset for older browsers */

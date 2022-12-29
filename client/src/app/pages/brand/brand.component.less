@@ -1,3 +1,7 @@
+* span, td, label {
+  color: #ffffff;
+}
+
 // Remove the stupid arrows from number input fields
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -33,6 +37,7 @@ input::-webkit-inner-spin-button {
   margin-top: 3%;
   margin-right: 2%;
 }
+
 .sortSectionTitle {
   font-weight: bold;
 }
@@ -43,6 +48,13 @@ input::-webkit-inner-spin-button {
 
 .rangeValue {
   width: 2em;
+  background-color: #696969;
+  border: none;
+  color: white;
+
+  &&::placeholder {
+    color: #a1a1a1;
+  }
 }
 
 .minMaxBox {
@@ -68,19 +80,23 @@ input::-webkit-inner-spin-button {
 }
 
 .applyButton {
-  background-color: deepskyblue;
+  background-color: #008bba;
   color: white;
+
+  &&:hover {
+    background-color: #009cd1;
+  }
 }
 
 .tHeaderItem {
   padding: 1.2em;
   font-size: 1.5em;
-  border-bottom: black solid 1px;
+  border-bottom: white solid 1px;
   text-align: center;
   vertical-align: middle;
 
   &:hover {
-    background-color: #f7f7f7;
+    background-color: #414141;
     cursor: pointer;
     resize: none;
   }
@@ -105,7 +121,7 @@ input::-webkit-inner-spin-button {
 
 .tRow {
   &:hover {
-    background-color: #f7f7f7;
+    background-color: #414141;
     cursor: pointer;
   }
 }

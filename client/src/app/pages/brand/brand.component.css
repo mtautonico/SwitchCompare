@@ -1,3 +1,8 @@
+* span,
+td,
+label {
+  color: #ffffff;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -36,6 +41,12 @@ input::-webkit-inner-spin-button {
 }
 .rangeValue {
   width: 2em;
+  background-color: #696969;
+  border: none;
+  color: white;
+}
+.rangeValue.rangeValue::placeholder {
+  color: #a1a1a1;
 }
 .minMaxBox {
   display: inline-block;
@@ -55,18 +66,21 @@ input::-webkit-inner-spin-button {
   margin-right: 1em;
 }
 .applyButton {
-  background-color: deepskyblue;
+  background-color: #008bba;
   color: white;
+}
+.applyButton.applyButton:hover {
+  background-color: #009cd1;
 }
 .tHeaderItem {
   padding: 1.2em;
   font-size: 1.5em;
-  border-bottom: black solid 1px;
+  border-bottom: white solid 1px;
   text-align: center;
   vertical-align: middle;
 }
 .tHeaderItem:hover {
-  background-color: #f7f7f7;
+  background-color: #414141;
   cursor: pointer;
   resize: none;
 }
@@ -83,7 +97,7 @@ input::-webkit-inner-spin-button {
   text-transform: capitalize;
 }
 .tRow:hover {
-  background-color: #f7f7f7;
+  background-color: #414141;
   cursor: pointer;
 }
 .headerContainer {

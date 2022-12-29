@@ -1,5 +1,6 @@
 <!--TODO: Elements to dark theme: the entire table, change all text to white, filter options, strikelines between filters,
 apply/reset buttons in filter options-->
+<!--TODO: Make the checkboxes not shit (make custom ones)-->
 
 <!--First if statement to put the loader when the page isn't ready-->
 <div *ngIf="loaded == true; then pageContent else loader"></div>
@@ -33,14 +34,14 @@ apply/reset buttons in filter options-->
             <hr style="
                   border: 0;
                   height: 1px;
-                  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));"
+                  background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));"
             />
           </div>
           <div *ngFor="let range of range_filters">
             <div class="rangeFilter">
               <span class="sortSectionTitle" style="text-transform: capitalize">{{range.replace('_', ' ')}}</span>
               <br/>
-              <div class= "minMaxBox">
+              <div class="minMaxBox">
                 <input class="rangeValue" [(ngModel)]="filters[range]['min']" placeholder="Min" type="number">
                 <span>mm</span>
                 <span style="padding: 0 5px">-</span>
@@ -105,7 +106,8 @@ apply/reset buttons in filter options-->
           <!--I had to put keySwitch kuz switch statements exist lmao-->
           <div *ngIf="filtered_switches.length > 0; then filteredSwitches else allSwitches"></div>
           <ng-template #allSwitches>
-            <tr *ngFor="let keySwitch of switches" class="tRow" (click)="compareSwitch(keySwitch.brand, keySwitch.model)">
+            <tr *ngFor="let keySwitch of switches" class="tRow"
+                (click)="compareSwitch(keySwitch.brand, keySwitch.model)">
               <td class="tItem">{{keySwitch.brand}}</td>
               <td class="tItem">{{keySwitch.model}}</td>
               <td class="tItem capitalize">{{keySwitch.type}}</td>
@@ -116,7 +118,8 @@ apply/reset buttons in filter options-->
             </tr>
           </ng-template>
           <ng-template #filteredSwitches>
-            <tr *ngFor="let keySwitch of filtered_switches" class="tRow" (click)="compareSwitch(keySwitch.brand, keySwitch.model)">
+            <tr *ngFor="let keySwitch of filtered_switches" class="tRow"
+                (click)="compareSwitch(keySwitch.brand, keySwitch.model)">
               <td class="tItem">{{keySwitch.brand}}</td>
               <td class="tItem">{{keySwitch.model}}</td>
               <td class="tItem capitalize">{{keySwitch.type}}</td>
