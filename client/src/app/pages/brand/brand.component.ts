@@ -181,7 +181,6 @@ export class BrandComponent {
   }
 
   // These run when the page is loaded
-
   async ngOnInit() {
     // Gets params from the URL
     this.route.paramMap.subscribe(params => {

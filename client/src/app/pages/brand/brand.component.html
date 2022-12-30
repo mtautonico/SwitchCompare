@@ -43,10 +43,12 @@ apply/reset buttons in filter options-->
               <br/>
               <div class="minMaxBox">
                 <input class="rangeValue" [(ngModel)]="filters[range]['min']" placeholder="Min" type="number">
-                <span>mm</span>
+                <span *ngIf="range.includes('distance')">mm</span>
+                <span *ngIf="range.includes('force')">g</span>
                 <span style="padding: 0 5px">-</span>
                 <input class="rangeValue" [(ngModel)]="filters[range]['max']" placeholder="Max" type="number">
-                <span>mm</span>
+                <span *ngIf="range.includes('distance')">mm</span>
+                <span *ngIf="range.includes('force')">g</span>
               </div>
             </div>
           </div>
@@ -111,10 +113,10 @@ apply/reset buttons in filter options-->
               <td class="tItem">{{keySwitch.brand}}</td>
               <td class="tItem">{{keySwitch.model}}</td>
               <td class="tItem capitalize">{{keySwitch.type}}</td>
-              <td class="tItem">{{parseFloat(keySwitch.actuation_distance)}}</td>
-              <td class="tItem">{{parseFloat(keySwitch.bottom_distance)}}</td>
-              <td class="tItem">{{parseFloat(keySwitch.operating_force)}}</td>
-              <td class="tItem">{{parseFloat(keySwitch.bottom_force)}}</td>
+              <td class="tItem">{{parseFloat(keySwitch.actuation_distance) + "mm"}}</td>
+              <td class="tItem">{{parseFloat(keySwitch.bottom_distance) + "mm"}}</td>
+              <td class="tItem">{{parseFloat(keySwitch.operating_force) + "g"}}</td>
+              <td class="tItem">{{parseFloat(keySwitch.bottom_force) + "g"}}</td>
             </tr>
           </ng-template>
           <ng-template #filteredSwitches>

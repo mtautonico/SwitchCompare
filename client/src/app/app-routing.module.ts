@@ -10,6 +10,7 @@ const routes: Routes = [
   {path: 'home', redirectTo: ''},
   {path: 'brand', component: BrandComponent},
   {path: 'brand/:brandName', component: BrandComponent},
+  {path: 'compare/:brandName/:switchName', component: CompareComponent},
   {path: 'compare/:brandName/:switchName/:brandName2/:switchName2', component: CompareComponent},
   {path: '**', component: NotfoundComponent}
 ];

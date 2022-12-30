@@ -46,7 +46,7 @@ input::-webkit-inner-spin-button {
   color: white;
 }
 .rangeValue.rangeValue::placeholder {
-  color: #a1a1a1;
+  color: #bdbdbd;
 }
 .minMaxBox {
   display: inline-block;
