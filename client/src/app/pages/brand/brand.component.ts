@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {APIFetchService} from "../../services/apifetch/apifetch.service";
 import {TabletoolsService} from "../../services/tabletools/tabletools.service";
-import {createCssResourcePlugin} from "@angular-devkit/build-angular/src/builders/browser-esbuild/css-resource-plugin";
 
 interface Switch {
   brand: string;
@@ -177,7 +176,7 @@ export class BrandComponent {
   // We need the brand in case theres a situation where 2 brands have the same model name
   // TODO: Write this function
   compareSwitch(selectedBrand: string, selectedSwitch: string) {
-
+    this.router.navigate(['/compare', selectedBrand, selectedSwitch]);
   }
 
   // These run when the page is loaded
