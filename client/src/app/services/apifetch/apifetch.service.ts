@@ -5,12 +5,14 @@ import {Injectable} from '@angular/core';
 })
 export class APIFetchService {
 
+  // Gets all brands information
   async getBrands() {
     const response = await fetch('/api/brand');
     const json = await response.json();
     return json.data;
   }
 
+  // Gets all switches from a specific brand
   async getSwitches(brand?: string) {
     if (brand == null) {
       console.log(brand)
@@ -22,5 +24,11 @@ export class APIFetchService {
       const json = await response.json();
       return json.data;
     }
+  }
+  // Gets a specific switch from a specific brand
+  async getSwitch(brand: string, model: string) {
+    const response = await fetch(`/api/switch/${brand}/${model}`);
+    const json = await response.json();
+    return json.data;
   }
 }

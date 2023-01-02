@@ -1,14 +1,26 @@
-<div>
-  <span>{{switchName}}</span>
-  <br/>
-  <span>{{brandName}}</span>
-  <br/>
-  <span>{{switchName2}}</span>
-  <br/>
-  <span>{{brandName2}}</span>
-  <br/>
-<!--  <span>{{brand1Switchlist}}</span>-->
-<!--  <br/>-->
-<!--  <span>{{brand2Switchlist}}</span>-->
-<!--  <br/>-->
-</div>
+<div *ngIf="loaded; then content; else loader"></div>
+<!--This is to prevent the browser from yelling at me kuz everything works fine but it seems to think otherwise-->
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+<ng-template #content>
+  <div class="content">
+    <div class="compareCard initial">
+      <h1 class="titleBar">{{this.brand1Data[0].brand}} {{this.brand1Data[0].model}}</h1>
+      <img class="switchImage" src="{{this.brand1Data[0].image}}"
+           alt="{{this.brand1Data[0].brand}} {{this.brand1Data[0].model}} image"/>
+      <span
+        class="switchStat actuationDistance">Actuation Distance: {{parseFloat(this.brand1Data[0].actuation_distance)}}
+        mm</span>
+      <br/>
+      <span class="switchStat bottomDistance">Bottom Distance: {{parseFloat(this.brand1Data[0].bottom_distance)}}
+        mm</span>
+      <br/>
+      <span class="switchStat operatingForce">Operating Force: {{parseFloat(this.brand1Data[0].operating_force)}}
+        g</span>
+      <br/>
+      <span class="switchStat bottomForce">Bottom Force: {{parseFloat(this.brand1Data[0].bottom_force)}}g</span>
+    </div>
+  </div>
+</ng-template>

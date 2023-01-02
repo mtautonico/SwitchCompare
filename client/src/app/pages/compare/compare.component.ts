@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {LoaderComponent} from "../../components/loader/loader.component";
 import {APIFetchService} from 'src/app/services/apifetch/apifetch.service';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {StringtoolsService} from "../../services/stringtools/stringtools.service";
 
 
@@ -8,6 +9,7 @@ interface Switch {
   brand: string;
   model: string;
   type: string;
+  image: string;
   actuation_distance: number;
   bottom_distance: number;
   operating_force: number;
@@ -26,18 +28,24 @@ export class CompareComponent implements OnInit {
   switchName2 = "";
   brand1Data: Switch[] = [];
   brand2Data: Switch[] = [];
+  loaded = false
+
 
   constructor(
     private readonly route: ActivatedRoute,
     private APIFetchService: APIFetchService,
-    private StringtoolsService: StringtoolsService
+    private StringtoolsService: StringtoolsService,
+    private readonly router: Router,
   ) {
+  }
+
+  // Angular doesn't like parseFloat idk why so I have to do this
+  parseFloat(value: number) {
+    return parseFloat(String(value));
   }
 
   async ngOnInit() {
     this.route.paramMap.subscribe(async params => {
-      // TODO: Make the 2nd brand not be a fucker
-      // TODO: Make the link parameters not be a fucker
       // @ts-ignore
       this.brandName = this.StringtoolsService.CapEachWord(params.get('brandName'));
       // @ts-ignore
@@ -46,22 +54,19 @@ export class CompareComponent implements OnInit {
       this.brandName2 = this.StringtoolsService.CapEachWord(params.get('brandName2'));
       // @ts-ignore
       this.switchName2 = this.StringtoolsService.CapEachWord(params.get('switchName2'));
-      this.brand1Data = await this.APIFetchService.getSwitches(this.brandName);
-      for (let i = 0; i < this.brand1Data.length; i++) {
-        if (this.brand1Data[i].model === this.switchName) {
-          this.brand1Data = [this.brand1Data[i]];
-          break;
-        }
-      }
-      if (this.brandName2 !== "") {
-        this.brand2Data = await this.APIFetchService.getSwitches(this.brandName2);
-        for (let i = 0; i < this.brand2Data.length; i++) {
-          if (this.brand2Data[i].model === this.switchName2) {
-            this.brand2Data = [this.brand2Data[i]];
-            break;
-          }
-        }
+      if (this.switchName2 === "") {
+        await this.router.navigate(['/compare', this.brandName, this.switchName]);
       }
     });
+    this.brand1Data = await this.APIFetchService.getSwitch(this.brandName, this.switchName);
+    this.brand1Data = [this.brand1Data[0]];
+    if (this.brandName2 !== "") {
+      this.brand2Data = await this.APIFetchService.getSwitch(this.brandName2, this.switchName2);
+      this.brand2Data = [this.brand2Data[0]];
+    }
+    console.log(this.brand1Data);
+    console.log(this.brand2Data);
+    this.loaded = true
   }
 }
+

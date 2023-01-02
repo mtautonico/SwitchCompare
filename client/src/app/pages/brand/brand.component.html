@@ -1,9 +1,6 @@
-<!--TODO: Elements to dark theme: the entire table, change all text to white, filter options, strikelines between filters,
-apply/reset buttons in filter options-->
-<!--TODO: Make the checkboxes not shit (make custom ones)-->
-
+<!--TODO: Label this disaster-->
 <!--First if statement to put the loader when the page isn't ready-->
-<div *ngIf="loaded === true; then pageContent else loader"></div>
+<div *ngIf="loaded; then pageContent else loader"></div>
 <ng-template #pageContent>
   <!--Determines if the 404 should be displayed or the switch table-->
   <div *ngIf="isSwitchesEmpty === true; then noSwitches else switchTable"></div>

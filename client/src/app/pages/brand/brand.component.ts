@@ -174,7 +174,7 @@ export class BrandComponent implements OnInit {
 
 
   // We need the brand in case theres a situation where 2 brands have the same model name
-  // TODO: Write this function
+  // TODO: Add functionality to select 2 switches to compare
   compareSwitch(selectedBrand: string, selectedSwitch: string) {
     this.router.navigate(['/compare', selectedBrand, selectedSwitch]);
   }
