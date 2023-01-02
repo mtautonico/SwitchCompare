@@ -3,10 +3,10 @@ apply/reset buttons in filter options-->
 <!--TODO: Make the checkboxes not shit (make custom ones)-->
 
 <!--First if statement to put the loader when the page isn't ready-->
-<div *ngIf="loaded == true; then pageContent else loader"></div>
+<div *ngIf="loaded === true; then pageContent else loader"></div>
 <ng-template #pageContent>
   <!--Determines if the 404 should be displayed or the switch table-->
-  <div *ngIf="isSwitchesEmpty == true; then noSwitches else switchTable"></div>
+  <div *ngIf="isSwitchesEmpty === true; then noSwitches else switchTable"></div>
   <!--404 Page for no switches-->
   <ng-template #noSwitches>
     <app-notfound></app-notfound>
@@ -63,44 +63,44 @@ apply/reset buttons in filter options-->
           <thead>
           <tr class="headerRow">
             <th (click)="sortTable(switches, 'brand')" class="tHeaderItem tItem">
-              <div class="headerContainer arrowUp" [class.arrowUp]="headerSort.brand == 'asc'"
-                   [class.arrowDown]="headerSort.brand == 'desc'">
+              <div class="headerContainer arrowUp" [class.arrowUp]="headerSort.brand === 'asc'"
+                   [class.arrowDown]="headerSort.brand === 'desc'">
                 <span class="tHeaderText">Brand</span>
               </div>
             </th>
             <th (click)="sortTable(switches, 'model')" class="tHeaderItem tItem">
-              <div class="headerContainer" [class.arrowUp]="headerSort.model == 'asc'"
-                   [class.arrowDown]="headerSort.model == 'desc'">
+              <div class="headerContainer" [class.arrowUp]="headerSort.model === 'asc'"
+                   [class.arrowDown]="headerSort.model === 'desc'">
                 <span class="tHeaderText">Model</span>
               </div>
             </th>
             <th (click)="sortTable(switches, 'type')" class="tHeaderItem tItem">
-              <div class="headerContainer" [class.arrowUp]="headerSort.type == 'asc'"
-                   [class.arrowDown]="headerSort.type == 'desc'">
+              <div class="headerContainer" [class.arrowUp]="headerSort.type === 'asc'"
+                   [class.arrowDown]="headerSort.type === 'desc'">
                 <span class="tHeaderText">Type</span>
               </div>
             </th>
             <th (click)="sortTable(switches, 'actuation_distance')" class="tHeaderItem tItem">
-              <div class="headerContainer" [class.arrowUp]="headerSort.actuation_distance == 'asc'"
-                   [class.arrowDown]="headerSort.actuation_distance == 'desc'">
+              <div class="headerContainer" [class.arrowUp]="headerSort.actuation_distance === 'asc'"
+                   [class.arrowDown]="headerSort.actuation_distance === 'desc'">
                 <span class="tHeaderText">Actuation<br/>Distance</span>
               </div>
             </th>
             <th (click)="sortTable(switches, 'bottom_distance')" class="tHeaderItem tItem">
-              <div class="headerContainer" [class.arrowUp]="headerSort.bottom_distance == 'asc'"
-                   [class.arrowDown]="headerSort.bottom_distance == 'desc'">
+              <div class="headerContainer" [class.arrowUp]="headerSort.bottom_distance === 'asc'"
+                   [class.arrowDown]="headerSort.bottom_distance === 'desc'">
                 <span class="tHeaderText">Bottom<br/>Distance</span>
               </div>
             </th>
             <th (click)="sortTable(switches, 'operating_force')" class="tHeaderItem tItem">
-              <div class="headerContainer" [class.arrowUp]="headerSort.operating_force == 'asc'"
-                   [class.arrowDown]="headerSort.operating_force == 'desc'">
+              <div class="headerContainer" [class.arrowUp]="headerSort.operating_force === 'asc'"
+                   [class.arrowDown]="headerSort.operating_force === 'desc'">
                 <span class="tHeaderText">Operating<br/>Force</span>
               </div>
             </th>
             <th (click)="sortTable(switches, 'bottom_force')" class="tHeaderItem tItem TRCorner">
-              <div class="headerContainer" [class.arrowUp]="headerSort.bottom_force == 'asc'"
-                   [class.arrowDown]="headerSort.bottom_force == 'desc'">
+              <div class="headerContainer" [class.arrowUp]="headerSort.bottom_force === 'asc'"
+                   [class.arrowDown]="headerSort.bottom_force === 'desc'">
                 <span class="tHeaderText">Bottom<br/>Force</span>
               </div>
             </th>

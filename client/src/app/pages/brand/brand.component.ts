@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {APIFetchService} from "../../services/apifetch/apifetch.service";
 import {TabletoolsService} from "../../services/tabletools/tabletools.service";
@@ -18,15 +18,15 @@ interface Switch {
   templateUrl: './brand.component.html',
   styleUrls: ['./brand.component.less']
 })
-export class BrandComponent {
+export class BrandComponent implements OnInit {
   brand: string | null = "";
   switches: Switch[] = [];
   // These are pretty self-explanatory
-  loaded: boolean = false;
-  isSwitchesEmpty: boolean = true;
-  currentSortDirectionIsAsc: boolean = true;
-  currentSortField: string = 'model';
-  lastSortField: string = 'model';
+  loaded = false;
+  isSwitchesEmpty = true;
+  currentSortDirectionIsAsc = true;
+  currentSortField = 'model';
+  lastSortField = 'model';
   filtered_switches: Switch[] = [];
   // These are for the table header sorting
   headerSort: any = {
@@ -97,7 +97,7 @@ export class BrandComponent {
   }
 
   // Angular doesn't like parseFloat idk why so I have to do this
-  parseFloat(value: Number) {
+  parseFloat(value: number) {
     return parseFloat(String(value));
   }
 
@@ -128,7 +128,7 @@ export class BrandComponent {
       operating_force: false,
       bottom_force: false
     }
-    let filteredTypes = [];
+    const filteredTypes = [];
     // Add all the selected switch types to a list of types to filter by
     for (let i = 0; i < Object.keys(this.filters.type).length; i++) {
       if (this.filters.type[Object.keys(this.filters.type)[i]]) {
@@ -150,7 +150,7 @@ export class BrandComponent {
       }
       // Loop through each range filter to determine if the switch is within the range or if a range is given
       for (let j = 0; j < this.range_filters.length; j++) {
-        let current_range: string = this.range_filters[j].toString();
+        const current_range: string = this.range_filters[j].toString();
         if (this.filters[current_range].min !== null && this.filters[current_range].max !== null) {
           // @ts-ignore
           if (this.switches[i][current_range] >= this.filters[current_range].min &&
@@ -209,6 +209,6 @@ export class BrandComponent {
     console.log(this.switches)
     this.loaded = true;
     console.log(history.state.data)
-  };
+  }
 }
 

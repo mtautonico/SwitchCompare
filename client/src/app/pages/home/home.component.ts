@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {APIFetchService} from "../../services/apifetch/apifetch.service";
 import {TabletoolsService} from "../../services/tabletools/tabletools.service";
 import {Router} from "@angular/router";
@@ -18,17 +18,17 @@ interface SelectedBrands {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.less']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   constructor(private APIFetchService: APIFetchService,
               private TabletoolsService: TabletoolsService,
               private router: Router) {
   }
 
-  isSelectedToggled: boolean = false;
+  isSelectedToggled = false;
   selectedBrands: SelectedBrands[] = [];
   finalSelectedBrands: string[] = [];
   brands: Brand[] = [];
-  darkTheme: boolean = true;
+  darkTheme = true;
 
 
   toggleSelect() {
@@ -50,9 +50,7 @@ export class HomeComponent {
     if (this.isSelectedToggled) {
       this.selectedBrands[this.selectedBrands.findIndex(x => x.name === item)].selected =
         !this.selectedBrands[this.selectedBrands.findIndex(x => x.name === item)].selected;
-
-      console.log(this.selectedBrands)
-    } else if (this.isSelectedToggled && this.selectedBrands[this.selectedBrands.findIndex(x => x.name === item)].selected) {
+    } else if (this.selectedBrands[this.selectedBrands.findIndex(x => x.name === item)].selected) {
       this.selectedBrands[this.selectedBrands.findIndex(x => x.name === item)].selected = false;
     } else {
       this.router.navigate(['/brand', item])
