@@ -28,7 +28,13 @@ export class CompareComponent implements OnInit {
   switchName2 = "";
   brand1Data: Switch[] = [];
   brand2Data: Switch[] = [];
-  loaded = false
+  loaded = false;
+  diff: any = {
+    actuation_distance: 0,
+    bottom_distance: 0,
+    operating_force: 0,
+    bottom_force: 0,
+  }
 
 
   constructor(
@@ -44,6 +50,23 @@ export class CompareComponent implements OnInit {
     return parseFloat(String(value));
   }
 
+
+  getDiff(field: string) {
+    if (this.diff[field] > 0) {
+      return "+" + this.diff[field];
+    } else {
+      return this.diff[field];
+    }
+  }
+  getDiffColor(field: string) {
+    if (this.diff[field] > 0) {
+      return "positive";
+    } else if (this.diff[field] < 0) {
+      return "negative";
+    } else {
+      return "neutral";
+    }
+  }
   async ngOnInit() {
     this.route.paramMap.subscribe(async params => {
       // @ts-ignore
@@ -63,6 +86,10 @@ export class CompareComponent implements OnInit {
     if (this.brandName2 !== "") {
       this.brand2Data = await this.APIFetchService.getSwitch(this.brandName2, this.switchName2);
       this.brand2Data = [this.brand2Data[0]];
+      this.diff.actuation_distance = this.parseFloat(this.brand1Data[0].actuation_distance) - this.parseFloat(this.brand2Data[0].actuation_distance);
+      this.diff.bottom_distance = this.parseFloat(this.brand1Data[0].bottom_distance) - this.parseFloat(this.brand2Data[0].bottom_distance);
+      this.diff.operating_force = this.parseFloat(this.brand1Data[0].operating_force) - this.parseFloat(this.brand2Data[0].operating_force);
+      this.diff.bottom_force = this.parseFloat(this.brand1Data[0].bottom_force) - this.parseFloat(this.brand2Data[0].bottom_force);
     }
     console.log(this.brand1Data);
     console.log(this.brand2Data);
