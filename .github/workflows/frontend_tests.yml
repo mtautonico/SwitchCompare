@@ -1,0 +1,31 @@
+name: Frontend CI
+
+on: [ push ]
+
+
+jobs:
+  run_tests:
+    name: Run ESlint
+    runs-on: ubuntu-18.04
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [ 16.x ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install NPM Dependencies
+        run: |
+          cd client
+          npm install
+
+      - name: Run ESlint
+        run: |
+          cd client
+          npm run lint

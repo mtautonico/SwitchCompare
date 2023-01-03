@@ -1,0 +1,140 @@
+<!--TODO: Label this disaster-->
+<!--First if statement to put the loader when the page isn't ready-->
+<div *ngIf="loaded; then pageContent else loader"></div>
+<ng-template #pageContent>
+  <!--Determines if the 404 should be displayed or the switch table-->
+  <div *ngIf="isSwitchesEmpty === true; then noSwitches else switchTable"></div>
+  <!--404 Page for no switches-->
+  <ng-template #noSwitches>
+    <app-notfound></app-notfound>
+  </ng-template>
+  <!--Switch Table-->
+  <ng-template #switchTable>
+    <br/>
+    <div class="body_contents">
+      <div class="filterPanel">
+        <div class="filterPanelContent">
+          <div class="typeFilters">
+            <span class="sortSectionTitle">Type</span>
+            <br/>
+            <!--Clicky filter-->
+            <input type="checkbox" [(ngModel)]="filters.type['clicky']" id="clicky" name="clicky" value="clicky"/>
+            <label class="typeFilterText" for="clicky">Clicky</label>
+            <br/>
+            <!--Linear filter-->
+            <input type="checkbox" [(ngModel)]="filters.type['linear']" id="linear" name="linear" value="linear"/>
+            <label class="typeFilterText" for="linear">Linear</label>
+            <br/>
+            <!--Tactile filter-->
+            <input type="checkbox" [(ngModel)]="filters.type['tactile']" id="tactile" name="tactile" value="tactile"/>
+            <label class="typeFilterText" for="tactile">Tactile</label>
+            <hr style="
+                  border: 0;
+                  height: 1px;
+                  background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));"
+            />
+          </div>
+          <div *ngFor="let range of range_filters">
+            <div class="rangeFilter">
+              <span class="sortSectionTitle" style="text-transform: capitalize">{{range.replace('_', ' ')}}</span>
+              <br/>
+              <div class="minMaxBox">
+                <input class="rangeValue" [(ngModel)]="filters[range]['min']" placeholder="Min" type="number">
+                <span *ngIf="range.includes('distance')">mm</span>
+                <span *ngIf="range.includes('force')">g</span>
+                <span style="padding: 0 5px">-</span>
+                <input class="rangeValue" [(ngModel)]="filters[range]['max']" placeholder="Max" type="number">
+                <span *ngIf="range.includes('distance')">mm</span>
+                <span *ngIf="range.includes('force')">g</span>
+              </div>
+            </div>
+          </div>
+          <span (click)="resetFilters()" class="filterActionButtons resetButton">Reset</span>
+          <span (click)="filter_switches()" class="filterActionButtons applyButton">Apply</span>
+        </div>
+      </div>
+
+      <!--  Switch Table    -->
+      <div class="switchDiv" style="display: inline">
+        <table class="switchTable">
+          <thead>
+          <tr class="headerRow">
+            <th (click)="sortTable(switches, 'brand')" class="tHeaderItem tItem">
+              <div class="headerContainer arrowUp" [class.arrowUp]="headerSort.brand === 'asc'"
+                   [class.arrowDown]="headerSort.brand === 'desc'">
+                <span class="tHeaderText">Brand</span>
+              </div>
+            </th>
+            <th (click)="sortTable(switches, 'model')" class="tHeaderItem tItem">
+              <div class="headerContainer" [class.arrowUp]="headerSort.model === 'asc'"
+                   [class.arrowDown]="headerSort.model === 'desc'">
+                <span class="tHeaderText">Model</span>
+              </div>
+            </th>
+            <th (click)="sortTable(switches, 'type')" class="tHeaderItem tItem">
+              <div class="headerContainer" [class.arrowUp]="headerSort.type === 'asc'"
+                   [class.arrowDown]="headerSort.type === 'desc'">
+                <span class="tHeaderText">Type</span>
+              </div>
+            </th>
+            <th (click)="sortTable(switches, 'actuation_distance')" class="tHeaderItem tItem">
+              <div class="headerContainer" [class.arrowUp]="headerSort.actuation_distance === 'asc'"
+                   [class.arrowDown]="headerSort.actuation_distance === 'desc'">
+                <span class="tHeaderText">Actuation<br/>Distance</span>
+              </div>
+            </th>
+            <th (click)="sortTable(switches, 'bottom_distance')" class="tHeaderItem tItem">
+              <div class="headerContainer" [class.arrowUp]="headerSort.bottom_distance === 'asc'"
+                   [class.arrowDown]="headerSort.bottom_distance === 'desc'">
+                <span class="tHeaderText">Bottom<br/>Distance</span>
+              </div>
+            </th>
+            <th (click)="sortTable(switches, 'operating_force')" class="tHeaderItem tItem">
+              <div class="headerContainer" [class.arrowUp]="headerSort.operating_force === 'asc'"
+                   [class.arrowDown]="headerSort.operating_force === 'desc'">
+                <span class="tHeaderText">Operating<br/>Force</span>
+              </div>
+            </th>
+            <th (click)="sortTable(switches, 'bottom_force')" class="tHeaderItem tItem TRCorner">
+              <div class="headerContainer" [class.arrowUp]="headerSort.bottom_force === 'asc'"
+                   [class.arrowDown]="headerSort.bottom_force === 'desc'">
+                <span class="tHeaderText">Bottom<br/>Force</span>
+              </div>
+            </th>
+          </tr>
+          <!--I had to put keySwitch kuz switch statements exist lmao-->
+          <div *ngIf="filtered_switches.length > 0; then filteredSwitches else allSwitches"></div>
+          <ng-template #allSwitches>
+            <tr *ngFor="let keySwitch of switches" class="tRow"
+                (click)="compareSwitch(keySwitch.brand, keySwitch.model)">
+              <td class="tItem">{{keySwitch.brand}}</td>
+              <td class="tItem">{{keySwitch.model}}</td>
+              <td class="tItem capitalize">{{keySwitch.type}}</td>
+              <td class="tItem">{{parseFloat(keySwitch.actuation_distance) + "mm"}}</td>
+              <td class="tItem">{{parseFloat(keySwitch.bottom_distance) + "mm"}}</td>
+              <td class="tItem">{{parseFloat(keySwitch.operating_force) + "g"}}</td>
+              <td class="tItem">{{parseFloat(keySwitch.bottom_force) + "g"}}</td>
+            </tr>
+          </ng-template>
+          <ng-template #filteredSwitches>
+            <tr *ngFor="let keySwitch of filtered_switches" class="tRow"
+                (click)="compareSwitch(keySwitch.brand, keySwitch.model)">
+              <td class="tItem">{{keySwitch.brand}}</td>
+              <td class="tItem">{{keySwitch.model}}</td>
+              <td class="tItem capitalize">{{keySwitch.type}}</td>
+              <td class="tItem">{{parseFloat(keySwitch.actuation_distance)}}</td>
+              <td class="tItem">{{parseFloat(keySwitch.bottom_distance)}}</td>
+              <td class="tItem">{{parseFloat(keySwitch.operating_force)}}</td>
+              <td class="tItem">{{parseFloat(keySwitch.bottom_force)}}</td>
+            </tr>
+          </ng-template>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>
+<!--Page loader-->
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

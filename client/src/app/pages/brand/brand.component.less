@@ -1,0 +1,153 @@
+* span, td, label {
+  color: #ffffff;
+}
+
+// Remove the stupid arrows from number input fields
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.titleBar {
+  font-size: 48px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.body_contents {
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  display: flex;
+  transform: translate(-8%);
+}
+
+.switchDiv {
+  display: inline-block;
+  float: left;
+  margin-top: 3%;
+}
+
+.filterPanel {
+  display: inline-block;
+  float: left;
+  width: auto;
+  margin-left: 5%;
+  margin-top: 3%;
+  margin-right: 2%;
+}
+
+.sortSectionTitle {
+  font-weight: bold;
+}
+
+.typeFilterText {
+  user-select: none;
+}
+
+.rangeValue {
+  width: 2em;
+  background-color: #696969;
+  border: none;
+  color: white;
+
+  &&::placeholder {
+    color: #bdbdbd;
+  }
+}
+
+.minMaxBox {
+  display: inline-block;
+  padding-bottom: 1em;
+}
+
+
+.filterActionButtons {
+  padding: 7px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  user-select: none;
+
+  &&:hover {
+    cursor: pointer;
+  }
+}
+
+.resetButton {
+  border: 1.5px solid lightgray;
+  margin-right: 1em;
+}
+
+.applyButton {
+  background-color: #008bba;
+  color: white;
+
+  &&:hover {
+    background-color: #009cd1;
+  }
+}
+
+.tHeaderItem {
+  padding: 1.2em;
+  font-size: 1.5em;
+  border-bottom: white solid 1px;
+  text-align: center;
+  vertical-align: middle;
+
+  &:hover {
+    background-color: #414141;
+    cursor: pointer;
+    resize: none;
+  }
+}
+
+.first {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+
+}
+
+.tItem {
+  padding: 0.5em 1.2em;
+  text-align: center;
+  user-select: none;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+
+.tRow {
+  &:hover {
+    background-color: #414141;
+    cursor: pointer;
+  }
+}
+
+.headerContainer {
+  padding: 1em 1.2em;
+  position: relative;
+  // Background settings for the sort arrow
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tHeaderText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+}
+
+
+.arrowDown {
+  background-image: url("../../../assets/arrowDown.png");
+}
+
+.arrowUp {
+  background-image: url("../../../assets/arrowUp.png");
+}

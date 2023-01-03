@@ -1,0 +1,44 @@
+* span {
+  color: #dbdbdb;
+}
+.footer-container {
+  background-color: #202020;
+  height: 60px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.footer-content {
+  display: flex;
+}
+.copyrightContainer {
+  line-height: 60px;
+}
+.footerLink {
+  color: #757575;
+  text-decoration: none;
+  /* no underline */
+}
+.kofi,
+.github {
+  padding: 15px;
+}
+.kofiIcon {
+  width: 35px;
+  height: auto;
+  transform: translateY(6px);
+}
+.footerLinks {
+  padding-right: 1em;
+  margin-left: auto;
+  transform: translateY(2px);
+}
+.copyright {
+  float: left;
+  padding-left: 1em;
+  color: black;
+  text-decoration: none;
+  /* no underline */
+}
+/*# sourceMappingURL=footer.component.css.map */

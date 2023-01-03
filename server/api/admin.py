@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib import admin
-from .models import Switch
+from .models import Switch, Brand
 
 
 class SwitchAdminForm(forms.ModelForm):
@@ -29,3 +29,4 @@ class SwitchAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Switch, SwitchAdmin)
+admin.site.register(Brand)

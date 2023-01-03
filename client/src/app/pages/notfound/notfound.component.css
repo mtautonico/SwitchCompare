@@ -1,0 +1,16 @@
+.content {
+  display: flex;
+  justify-content: center;
+}
+.img {
+  border-radius: 10px;
+  width: 10em;
+  height: auto;
+  justify-content: center;
+}
+.text {
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+/*# sourceMappingURL=notfound.component.css.map */

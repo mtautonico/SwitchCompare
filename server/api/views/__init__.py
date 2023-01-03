@@ -1,1 +1,1 @@
-from . import switch
+from . import switch, brand

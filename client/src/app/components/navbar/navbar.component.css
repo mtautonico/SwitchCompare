@@ -1,0 +1,13 @@
+.navbar_logo {
+  justify-content: center;
+  display: flex;
+  background-color: #202020;
+  padding: 1em;
+  user-select: none;
+}
+.navbar_logo img {
+  width: 5em;
+  height: auto;
+  user-select: none;
+}
+/*# sourceMappingURL=navbar.component.css.map */
