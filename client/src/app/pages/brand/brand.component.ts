@@ -64,6 +64,10 @@ export class BrandComponent implements OnInit {
   }
   // idk I felt like being slightly efficient in my code for once
   range_filters: any = ['actuation_distance', 'bottom_distance', 'bottom_force', 'operating_force'];
+  AddMode = false;
+  previous_switch: [string, string] = ['', ''];
+  selected_switches: [string, string] = ['', ''];
+  isSelectedToggled = false;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -173,10 +177,39 @@ export class BrandComponent implements OnInit {
   }
 
 
+  giveClass(brand: string, model: string) {
+    if (this.selected_switches[0] === brand && this.selected_switches[1] ===  model) {
+      return 'selected';
+    } else {
+      return '';
+    }
+  }
+
   // We need the brand in case theres a situation where 2 brands have the same model name
-  // TODO: Add functionality to select 2 switches to compare
   compareSwitch(selectedBrand: string, selectedSwitch: string) {
-    this.router.navigate(['/compare', selectedBrand, selectedSwitch]);
+    if (this.AddMode) {
+      this.router.navigate(['/compare', this.previous_switch[0], this.previous_switch[1], selectedBrand, selectedSwitch]);
+    } else if (this.isSelectedToggled) {
+      if (this.selected_switches[0] !== '' && this.selected_switches[1] !== '') {
+        if (this.selected_switches[0] == selectedBrand && this.selected_switches[1] == selectedSwitch) {
+          this.selected_switches = ['', ''];
+        } else if (this.selected_switches[0] !== selectedBrand ||this.selected_switches[1] != selectedSwitch) {
+          this.router.navigate((['/compare', this.selected_switches[0], this.selected_switches[1], selectedBrand, selectedSwitch]));
+        }
+      } else if (this.selected_switches[0] == '' && this.selected_switches[1] == '') {
+        this.selected_switches = [selectedBrand, selectedSwitch];
+      }
+    } else {
+      this.router.navigate(['/compare', selectedBrand, selectedSwitch]);
+    }
+    console.log(this.selected_switches);
+  }
+
+  toggleSelect() {
+    this.isSelectedToggled = !this.isSelectedToggled;
+    if (!this.isSelectedToggled) {
+      this.selected_switches = ['', ''];
+    }
   }
 
   // These run when the page is loaded
@@ -187,12 +220,24 @@ export class BrandComponent implements OnInit {
     });
     // Gets list of selected switches from the previous page if present
     if (history.state.data != undefined) {
-      for (let i = 0; i < history.state.data.length; i++) {
-        this.switches.push(await this.APIFetchService.getSwitches(history.state.data[i]));
+      if (history.state.data.AddMode) {
+        this.AddMode = true
+        this.previous_switch = history.state.data.previousSwitch
+        this.switches = (await this.APIFetchService.getSwitches())
+        for (let i = 0; i < this.switches.length; i++) {
+          if (this.switches[i].brand == this.previous_switch[0] && this.switches[i].model == this.previous_switch[1]) {
+            this.switches.splice(i, 1);
+          }
+        }
+      } else if (history.state.data.selectedBrandsMode) {
+        console.log(history.state.data.selectedBrandsMode);
+        for (let i = 0; i < history.state.data.selectedBrands.length; i++) {
+          this.switches.push(await this.APIFetchService.getSwitches(history.state.data.selectedBrands[i]));
+        }
+        this.switches = this.switches.flat();
+        console.log(this.switches)
+        console.log("triggered a")
       }
-      this.switches = this.switches.flat();
-      console.log(this.switches)
-      console.log("triggered a")
       //  If there are no selected switches, get all switches from the brand
     } else if (this.brand == undefined) {
       this.switches = await this.APIFetchService.getSwitches();
@@ -208,7 +253,8 @@ export class BrandComponent implements OnInit {
     this.switches = this.TabletoolsService.sortJSON(this.switches, 'model', true);
     console.log(this.switches)
     this.loaded = true;
-    console.log(history.state.data)
+    console.log(history.state)
+    console.log(this.AddMode)
   }
 }
 

@@ -1,10 +1,7 @@
 # SwitchCompare
 
+Compare mechanical switches to determine which one is best for you.
+
 ---
-- Frontend 
-    - Svelte (Transitioning to React)
-    - Sentry
-    - Some sort of CSS (come back to this u fuck)
-- Backend
-    - Django
-    - MongoDB (Testing: SQLite)
+
+[//]: # (TODO: This)
