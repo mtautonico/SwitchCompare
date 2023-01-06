@@ -6,15 +6,15 @@ import { environment } from 'src/environments/environments';
 })
 export class ConsoleToggleService {
 
-  constructor() {
-
-  }
-
   disableConsoleInProduction(): void {
     if (environment.production) {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
       console.log = function (): void { };
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
       console.debug = function (): void { };
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
       console.warn = function (): void { };
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
       console.info = function (): void { };
     }
   }
