@@ -14,6 +14,9 @@
     <div class="body_contents">
       <div class="filterPanel">
         <div class="filterPanelContent">
+          <div (click)="toggleSelect()" [ngClass]="isSelectedToggled ? 'selectOn' : 'selectOff' " class="selectButton">
+            <a>Select Brands</a>
+          </div>
           <div class="typeFilters">
             <span class="sortSectionTitle">Type</span>
             <br/>
@@ -56,6 +59,11 @@
 
       <!--  Switch Table    -->
       <div class="switchDiv" style="display: inline">
+        <h1 [ngClass]="AddMode ? 'visible' : 'probablyNotVisible'" class="selectionText">
+          <h1 class="previousSwitchData">({{previous_switch[0]}} {{previous_switch[1]}} Selected)</h1>
+          <br/> Select 2nd Switch:
+        </h1>
+
         <table class="switchTable">
           <thead>
           <tr class="headerRow">
@@ -106,7 +114,8 @@
           <div *ngIf="filtered_switches.length > 0; then filteredSwitches else allSwitches"></div>
           <ng-template #allSwitches>
             <tr *ngFor="let keySwitch of switches" class="tRow"
-                (click)="compareSwitch(keySwitch.brand, keySwitch.model)">
+                (click)="compareSwitch(keySwitch.brand, keySwitch.model)"
+                [ngClass]="giveClass(keySwitch.brand, keySwitch.model)">
               <td class="tItem">{{keySwitch.brand}}</td>
               <td class="tItem">{{keySwitch.model}}</td>
               <td class="tItem capitalize">{{keySwitch.type}}</td>
@@ -118,7 +127,8 @@
           </ng-template>
           <ng-template #filteredSwitches>
             <tr *ngFor="let keySwitch of filtered_switches" class="tRow"
-                (click)="compareSwitch(keySwitch.brand, keySwitch.model)">
+                (click)="compareSwitch(keySwitch.brand, keySwitch.model)"
+                [ngClass]="giveClass(keySwitch.brand, keySwitch.model)">
               <td class="tItem">{{keySwitch.brand}}</td>
               <td class="tItem">{{keySwitch.model}}</td>
               <td class="tItem capitalize">{{keySwitch.type}}</td>

@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
   finalSelectedBrands: string[] = [];
   brands: Brand[] = [];
   darkTheme = true;
+  selectedBrandsNum = 0;
 
 
   toggleSelect() {
@@ -37,6 +38,7 @@ export class HomeComponent implements OnInit {
     for (let i = 0; i < this.selectedBrands.length; i++) {
       this.selectedBrands[i].selected = false;
     }
+    this.selectedBrandsNum = 0;
     console.log(this.isSelectedToggled);
   }
 
@@ -50,7 +52,12 @@ export class HomeComponent implements OnInit {
     if (this.isSelectedToggled) {
       this.selectedBrands[this.selectedBrands.findIndex(x => x.name === item)].selected =
         !this.selectedBrands[this.selectedBrands.findIndex(x => x.name === item)].selected;
-    } else if (this.selectedBrands[this.selectedBrands.findIndex(x => x.name === item)].selected) {
+        if (this.selectedBrands[this.selectedBrands.findIndex(x => x.name === item)].selected) {
+          this.selectedBrandsNum += 1;
+        } else {
+          this.selectedBrandsNum -= 1;
+        }
+      } else if (this.selectedBrands[this.selectedBrands.findIndex(x => x.name === item)].selected) {
       this.selectedBrands[this.selectedBrands.findIndex(x => x.name === item)].selected = false;
     } else {
       this.router.navigate(['/brand', item])
@@ -65,7 +72,7 @@ export class HomeComponent implements OnInit {
       }
     }
     // Were using state here to pass the selected brands variable to the next page
-    this.router.navigate(['/brand'], {state: {data: this.finalSelectedBrands}});
+    this.router.navigate(['/brand'], {state: {data: {selectedBrandsMode: true, selectedBrands: this.finalSelectedBrands}}});
   }
 
   async ngOnInit() {

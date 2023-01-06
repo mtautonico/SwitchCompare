@@ -1,6 +1,7 @@
 * span,
 td,
-label {
+label,
+h1 {
   color: #ffffff;
 }
 input::-webkit-outer-spin-button,
@@ -23,14 +24,14 @@ input::-webkit-inner-spin-button {
 .switchDiv {
   display: inline-block;
   float: left;
-  margin-top: 3%;
+  margin-top: 0.5%;
 }
 .filterPanel {
   display: inline-block;
   float: left;
   width: auto;
   margin-left: 5%;
-  margin-top: 3%;
+  margin-top: 3.5%;
   margin-right: 2%;
 }
 .sortSectionTitle {
@@ -45,7 +46,7 @@ input::-webkit-inner-spin-button {
   border: none;
   color: white;
 }
-.rangeValue.rangeValue::placeholder {
+.rangeValue::placeholder {
   color: #bdbdbd;
 }
 .minMaxBox {
@@ -58,7 +59,7 @@ input::-webkit-inner-spin-button {
   font-size: 1.2em;
   user-select: none;
 }
-.filterActionButtons.filterActionButtons:hover {
+.filterActionButtons:hover {
   cursor: pointer;
 }
 .resetButton {
@@ -69,7 +70,7 @@ input::-webkit-inner-spin-button {
   background-color: #008bba;
   color: white;
 }
-.applyButton.applyButton:hover {
+.applyButton:hover {
   background-color: #009cd1;
 }
 .tHeaderItem {
@@ -119,5 +120,46 @@ input::-webkit-inner-spin-button {
 }
 .arrowUp {
   background-image: url("../../../assets/arrowUp.png");
+}
+.visible {
+  visibility: visible;
+}
+.probablyNotVisible {
+  visibility: hidden;
+}
+.selectionText {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  line-height: 0.9em;
+}
+.previousSwitchData {
+  color: #6e6e6e;
+  font-weight: normal !important;
+}
+.selectOn {
+  background-color: #008c00;
+}
+.selectOn:hover {
+  background-color: #00bd00 !important;
+}
+.selectOff {
+  background-color: #8f0000;
+}
+.selectOff:hover {
+  background-color: #b80000 !important;
+}
+.selectButton {
+  padding: 10px 25px;
+  border-radius: 5px;
+  user-select: none;
+  text-decoration: none;
+  color: white;
+}
+.selectButton:hover {
+  cursor: pointer;
+}
+.selected {
+  background-color: #526b4a !important;
 }
 /*# sourceMappingURL=brand.component.css.map */

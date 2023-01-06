@@ -10,8 +10,9 @@ import {BrandComponent} from './pages/brand/brand.component';
 import {NotfoundComponent} from './pages/notfound/notfound.component';
 import {LoaderComponent} from './components/loader/loader.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import { CompareComponent } from './pages/compare/compare.component';
+import {CompareComponent} from './pages/compare/compare.component';
 import {FormsModule} from "@angular/forms";
+import {ConsoleToggleService} from "./services/ConsoleToogleService/console-toogle-service.service";
 
 @NgModule({
   declarations: [
@@ -24,15 +25,19 @@ import {FormsModule} from "@angular/forms";
     LoaderComponent,
     CompareComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FontAwesomeModule,
-        FormsModule
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FontAwesomeModule,
+    FormsModule
 
-    ],
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(private consoleToggleService: ConsoleToggleService) {
+    this.consoleToggleService.disableConsoleInProduction();
+  }
 }
+

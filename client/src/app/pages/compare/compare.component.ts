@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {LoaderComponent} from "../../components/loader/loader.component";
 import {APIFetchService} from 'src/app/services/apifetch/apifetch.service';
 import {ActivatedRoute, Router} from "@angular/router";
 import {StringtoolsService} from "../../services/stringtools/stringtools.service";
@@ -30,10 +29,10 @@ export class CompareComponent implements OnInit {
   brand2Data: Switch[] = [];
   loaded = false;
   diff: any = {
-    actuation_distance: 0,
-    bottom_distance: 0,
-    operating_force: 0,
-    bottom_force: 0,
+    actuation_distance: null,
+    bottom_distance: null,
+    operating_force: null,
+    bottom_force: null,
   }
 
 
@@ -45,6 +44,11 @@ export class CompareComponent implements OnInit {
   ) {
   }
 
+
+  // Add switch if only 1 switch is provided in the URL
+  AddSwitch() {
+    this.router.navigate(['/brand'], {state: {data: {AddMode: true, previousSwitch: [this.brandName, this.switchName]}}});
+  }
   // Angular doesn't like parseFloat idk why so I have to do this
   parseFloat(value: number) {
     return parseFloat(String(value));
@@ -58,6 +62,7 @@ export class CompareComponent implements OnInit {
       return this.diff[field];
     }
   }
+
   getDiffColor(field: string) {
     if (this.diff[field] > 0) {
       return "positive";
@@ -86,10 +91,10 @@ export class CompareComponent implements OnInit {
     if (this.brandName2 !== "") {
       this.brand2Data = await this.APIFetchService.getSwitch(this.brandName2, this.switchName2);
       this.brand2Data = [this.brand2Data[0]];
-      this.diff.actuation_distance = this.parseFloat(this.brand1Data[0].actuation_distance) - this.parseFloat(this.brand2Data[0].actuation_distance);
-      this.diff.bottom_distance = this.parseFloat(this.brand1Data[0].bottom_distance) - this.parseFloat(this.brand2Data[0].bottom_distance);
-      this.diff.operating_force = this.parseFloat(this.brand1Data[0].operating_force) - this.parseFloat(this.brand2Data[0].operating_force);
-      this.diff.bottom_force = this.parseFloat(this.brand1Data[0].bottom_force) - this.parseFloat(this.brand2Data[0].bottom_force);
+      this.diff.actuation_distance = (this.parseFloat(this.brand1Data[0].actuation_distance) - this.parseFloat(this.brand2Data[0].actuation_distance)).toFixed(2);
+      this.diff.bottom_distance = (this.parseFloat(this.brand1Data[0].bottom_distance) - this.parseFloat(this.brand2Data[0].bottom_distance)).toFixed(2);
+      this.diff.operating_force = (this.parseFloat(this.brand1Data[0].operating_force) - this.parseFloat(this.brand2Data[0].operating_force)).toFixed(2);
+      this.diff.bottom_force = (this.parseFloat(this.brand1Data[0].bottom_force) - this.parseFloat(this.brand2Data[0].bottom_force)).toFixed(2);
     }
     console.log(this.brand1Data);
     console.log(this.brand2Data);

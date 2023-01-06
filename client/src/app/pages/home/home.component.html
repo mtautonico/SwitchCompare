@@ -1,7 +1,6 @@
 <div class="allButtonContainer">
   <a *ngIf="!isSelectedToggled" routerLink="/brand" class="allButton">View All</a>
-  <!--  TODO: Replace x with amount of brands and handle a situation with 0 switches detected-->
-  <a *ngIf="isSelectedToggled" (click)="parseSelectedBrands()" routerLink="/brand" class="allButton">Select x Brands</a>
+  <a *ngIf="isSelectedToggled" (click)="parseSelectedBrands()" routerLink="/brand" class="allButton">Select {{selectedBrandsNum}} Brands</a>
   <a (click)="toggleSelect()" [ngClass]="isSelectedToggled ? 'selectOn' : 'selectOff' " class="selectButton">Select
     Brands</a>
 </div>
