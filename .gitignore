@@ -331,3 +331,4 @@ cython_debug/
 .DS_Store
 server/db.sqlite3
 server/media/
+*.icloud
