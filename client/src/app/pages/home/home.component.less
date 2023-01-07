@@ -2,6 +2,19 @@
   color: #dbdbdb;
 }
 
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #383838;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-corner {
+  display: none;
+}
+
 .allButton {
   background-color: #474747;
   padding: 10px 25px;
@@ -10,6 +23,7 @@
   text-decoration: none;
   color: white;
   margin-right: 10px;
+
   &:hover {
     background-color: #666666; // Spooky
     cursor: pointer;
@@ -24,6 +38,7 @@
   text-decoration: none;
   color: white;
   margin-left: auto;
+
   &:hover {
     cursor: pointer;
   }
@@ -58,6 +73,12 @@
   justify-content: center;
   display: flex;
   user-select: none;
+  flex-wrap: wrap;
+}
+
+.cardsContainer {
+  height: 77vh;
+  overflow: scroll;
 }
 
 .cardLogo {
