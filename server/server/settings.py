@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-11@qnbe(&p!*3%n9mi8#w@tvu(_ipe&pxs*_bky*ihj)u7h*@%'
+SECRET_KEY = os.environ.get("DJANGO_KEY")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -28,7 +28,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.1.242", "127.0.0.1", "localhost", "192.168.1.111", "192.168.1.136"]
+ALLOWED_HOSTS = ["192.168.1.242", "127.0.0.1", "localhost",
+                 "192.168.1.111", "192.168.1.136", "switchcompare.tautoni.com"]
 
 # Application definition
 
@@ -139,6 +140,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://0.0.0.0:8000",
     "http://192.168.1.242:8000"
+    "https://switchcompare.tautoni.com"
 ]
 
 APPEND_SLASH = True
