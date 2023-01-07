@@ -32,7 +32,7 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
-          rm: true
+          rm: false
           source: "client/dist/*"
           # I dont care about making this public because its 6am
           target: "/var/www/switchcompare.tautoni.com/public*"
@@ -45,7 +45,7 @@ jobs:
           username: ${{ secrets.REMOTE_USER2 }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.SSH_KEY_PASSPHRASE2 }}
-          rm: true
+          rm: false
           source: "server*"
           # Same thing here
           target: "/home/deploy/server*"
