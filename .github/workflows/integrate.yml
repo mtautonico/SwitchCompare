@@ -1,0 +1,61 @@
+name: Deploy To Server
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [ 16.x ]
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install NPM Dependencies and Build
+        run: |
+          cd client
+          npm install
+          npm run build --if-present
+
+      - name: Copy Files to Server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          port: ${{ secrets.REMOTE_PORT }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
+          rm: true
+          source: "client/dist/*"
+          target: "${{ secrets.REMOTE_DIR }}"
+
+      - name: Copy Share Files to Server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          port: ${{ secrets.REMOTE_PORT }}
+          username: ${{ secrets.REMOTE_USER2 }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_KEY_PASSPHRASE2 }}
+          rm: true
+          source: "server"
+          target: "${{ secrets.PROJECT_ROOT2 }}"
+
+      - name: Restart Server
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          port: ${{ secrets.REMOTE_PORT }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
+          script:
+            sudo systemctl reload nginx
+            ${{ secrets.SSH_KEY_PASSPHRASE }}
