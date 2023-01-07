@@ -35,7 +35,7 @@ jobs:
           rm: true
           source: "client/dist/*"
           # I dont care about making this public because its 6am
-          target: "/var/www/switchcompare.tautoni.com/public"
+          target: "/var/www/switchcompare.tautoni.com/public*"
 
       - name: Copy Backend Files to Server
         uses: appleboy/scp-action@master
@@ -48,7 +48,7 @@ jobs:
           rm: true
           source: "server*"
           # Same thing here
-          target: "/home/deploy/server"
+          target: "/home/deploy/server*"
 
       - name: Restart Server
         uses: appleboy/ssh-action@v0.1.4
