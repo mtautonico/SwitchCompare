@@ -8,6 +8,17 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #383838;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-corner {
+  display: none;
+}
 
 .titleBar {
   font-size: 48px;
@@ -187,12 +198,14 @@ input::-webkit-inner-spin-button {
     background-color: #b80000 !important;
   }
 }
+
 .selectButton {
   padding: 10px 25px;
   border-radius: 5px;
   user-select: none;
   text-decoration: none;
   color: white;
+
   &:hover {
     cursor: pointer;
   }
@@ -200,4 +213,14 @@ input::-webkit-inner-spin-button {
 
 .selected {
   background-color: #526b4a !important;
+}
+
+.tableForScroll {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.switchTableContainer {
+  height: 85%;
+  overflow: scroll;
 }

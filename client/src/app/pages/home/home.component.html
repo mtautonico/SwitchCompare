@@ -4,14 +4,16 @@
   <a (click)="toggleSelect()" [ngClass]="isSelectedToggled ? 'selectOn' : 'selectOff' " class="selectButton">Select
     Brands</a>
 </div>
-<div class="cards">
-  <div [ngClass]="checkSelect(brand['name']) ? 'selected' : 'card'"
-       class="card"
-       (click)="handleClick(brand['name'])"
-       *ngFor="let brand of brands">
-    <a>
-      <img class='cardLogo' [src]="brand['logo']" [alt]="brand['name']"/>
-      <span class="cardText">{{brand['name']}}</span>
-    </a>
+<div class="cardsContainer">
+  <div class="cards">
+    <div [ngClass]="checkSelect(brand['name']) ? 'selected' : 'card'"
+         class="card"
+         (click)="handleClick(brand['name'])"
+         *ngFor="let brand of brands">
+      <a>
+        <img class='cardLogo' [src]="brand['logo']" [alt]="brand['name']"/>
+        <span class="cardText">{{brand['name']}}</span>
+      </a>
+    </div>
   </div>
 </div>

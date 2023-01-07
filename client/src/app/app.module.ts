@@ -13,6 +13,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {CompareComponent} from './pages/compare/compare.component';
 import {FormsModule} from "@angular/forms";
 import {ConsoleToggleService} from "./services/ConsoleToogleService/console-toogle-service.service";
+import {NgScrollbarModule} from "ngx-scrollbar";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {ConsoleToggleService} from "./services/ConsoleToogleService/console-toog
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    NgScrollbarModule
 
   ],
   providers: [],

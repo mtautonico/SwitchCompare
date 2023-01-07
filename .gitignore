@@ -329,3 +329,5 @@ cython_debug/
 # Other
 
 .DS_Store
+server/db.sqlite3
+server/media/

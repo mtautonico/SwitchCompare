@@ -9,6 +9,16 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: #383838;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-corner {
+  display: none;
+}
 .titleBar {
   font-size: 48px;
   text-align: center;
@@ -161,5 +171,13 @@ input::-webkit-inner-spin-button {
 }
 .selected {
   background-color: #526b4a !important;
+}
+.tableForScroll {
+  overflow-y: scroll;
+  height: 100%;
+}
+.switchTableContainer {
+  height: 85%;
+  overflow: scroll;
 }
 /*# sourceMappingURL=brand.component.css.map */
