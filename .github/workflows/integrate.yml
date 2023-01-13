@@ -65,4 +65,5 @@ jobs:
             source env/bin/activate
             cd server
             python3 -r requirements.txt
+            python3 manage.py makemigrations
             python3 manage.py migrate
