@@ -332,3 +332,4 @@ cython_debug/
 server/db.sqlite3
 server/media/
 *.icloud
+client/pnpm-lock.yaml
